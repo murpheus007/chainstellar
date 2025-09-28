@@ -18,7 +18,7 @@ function Skills() {
           Skills
         </h2>
 
-        <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(500px,1fr))]">
+        <div className="grid gap-4 md:grid-cols-[repeat(auto-fit,minmax(500px,1fr))]">
           {skills.map((skill) => (
             <div
               key={skill.id}
