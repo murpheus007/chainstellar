@@ -191,7 +191,7 @@ function BestWorks() {
                <button
                   onClick={handlePrev}
                   disabled={currentPage === 1}
-                  className='px-4 py-2 bg-neutral-900 text-white rounded disabled:opacity-50'>
+                  className='px-4 py-2 bg-neutral-900 text-white rounded disabled:opacity-50 cursor-pointer'>
                   Previous
                </button>
                <span className='text-text'>
@@ -200,7 +200,7 @@ function BestWorks() {
                <button
                   onClick={handleNext}
                   disabled={currentPage === totalPages}
-                  className='px-4 py-2 bg-neutral-900 text-white rounded disabled:opacity-50'>
+                  className='px-4 py-2 bg-neutral-900 text-white rounded disabled:opacity-50 cursor-pointer'>
                   Next
                </button>
             </div>

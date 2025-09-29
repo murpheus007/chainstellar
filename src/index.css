@@ -7,7 +7,7 @@
   --color-surface: #f9f9f9;
   --color-primary: #155dfc;
   --color-accent: #1b3bb5;
-  --color-text: #1a1a1a;
+  --color-text: #061b44;
 }
 
 /* Dark mode overrides */
@@ -15,7 +15,7 @@
   --color-background: #0a0a0a;
   --color-surface: #1a1a1a;
   --color-primary: #155dfc;
-  --color-accent: #06359a;
+  --color-accent: #91a5f4;
   --color-text: #ffffff;
 }
 
