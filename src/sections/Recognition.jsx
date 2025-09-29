@@ -40,9 +40,9 @@ function Recognitions() {
          <div className='max-w-6xl mx-auto px-6'>
             {/* Section Heading */}
             <p className='inline bg-neutral-600 p-2 text-sm text-white uppercase rounded-sm mb-2'>
-               My
+               His
             </p>
-            <h2 className='text-2xl md:text-3xl font-bold text-white mt-2 mb-12'>
+            <h2 className='text-2xl md:text-3xl font-bold text-white mt-2 mb-12 font-serif'>
                Recognitions
             </h2>
 
@@ -64,7 +64,7 @@ function Recognitions() {
                         href={recog.link}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='flex items-center justify-center rounded-md bg-neutral-700 hover:bg-neutral-600 transition p-4'>
+                        className='flex items-center justify-center rounded-md bg-primary hover:bg-neutral-600 transition p-4'>
                         <SquareArrowRight
                            size={20}
                            className='text-white'
