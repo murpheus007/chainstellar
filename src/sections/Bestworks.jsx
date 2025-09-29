@@ -147,7 +147,7 @@ function BestWorks() {
          <div className='max-w-6xl mx-auto px-6'>
             {/* Section Heading */}
             <p className='inline bg-neutral-600 p-2 text-sm text-white uppercase rounded-sm mb-2'> His </p>
-            <h2 className='text-2xl md:text-3xl font-bold text-white mt-2 mb-6 font-serif'>
+            <h2 className='text-2xl md:text-3xl font-bold text-text mt-2 mb-6'>
                Best Works
             </h2>
 
@@ -168,17 +168,17 @@ function BestWorks() {
 
                      {/* Text & Arrow */}
                      <div className='md:w-1/2 flex flex-col gap-4'>
-                        <h3 className='text-xl md:text-2xl font-bold text-white'>
+                        <h3 className='text-xl md:text-2xl font-bold text-text'>
                            {work.title}
                         </h3>
-                        <p className='text-gray-300 leading-relaxed'>
+                        <p className='text-text'>
                            {work.description}
                         </p>
                         <a
                            href={work.link}
                            target='_blank'
                            rel='noopener noreferrer'
-                           className='flex items-center gap-2 text-white font-medium hover:gap-4 transition-all'>
+                           className='flex items-center gap-2 text-accent font-medium hover:gap-4 transition-all'>
                            Read More
                            <ArrowRight size={20} />
                         </a>
@@ -194,7 +194,7 @@ function BestWorks() {
                   className='px-4 py-2 bg-neutral-900 text-white rounded disabled:opacity-50'>
                   Previous
                </button>
-               <span className='text-gray-300'>
+               <span className='text-text'>
                   Page {currentPage} of {totalPages}
                </span>
                <button

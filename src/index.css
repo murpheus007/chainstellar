@@ -1,11 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/* Default (light mode) */
 @theme {
+  --color-background: #ffffff;
+  --color-surface: #f9f9f9;
+  --color-primary: #155dfc;
+  --color-accent: #1b3bb5;
+  --color-text: #1a1a1a;
+}
+
+/* Dark mode overrides */
+:root.dark {
   --color-background: #0a0a0a;
   --color-surface: #1a1a1a;
   --color-primary: #155dfc;
-  --color-accent: #60a5fa;
+  --color-accent: #06359a;
+  --color-text: #ffffff;
 }
 
 body {

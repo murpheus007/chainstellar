@@ -14,11 +14,11 @@ function Hero() {
 
          {/* Right: Text */}
          <div className="md:w-1/2 flex flex-col gap-4 text-left">
-            <h2 className="text-3xl md:text-4xl text-primary   font-bold capitalize max-w-[550px]">
+            <h2 className="text-3xl md:text-4xl text-text    font-bold capitalize max-w-[550px]">
                Obsessed with the third iteration of the web.
             </h2>
-            <p className="text-gray-300 leading-relaxed max-w-[600px]">
-               Meet <span className="text-primary">chainstellar</span>, a general
+            <p className="text-text leading-relaxed max-w-[600px]">
+               Meet <span className="text-accent">chainstellar</span>, a general
                creative and technical writer with a strong enthusiasm for
                blockchain and its evolving ecosystem.
             </p>
@@ -32,10 +32,10 @@ function Hero() {
                   Book Meeting
                </a>
                <a
-                  href="#chat"
+                  href="https://t.me/chainstellar1"
                   className="px-6 py-2 bg-neutral-800 text-white text-sm font-bold border border-white rounded-sm hover:bg-neutral-500 transition"
                >
-                  Chat Me
+                  Chat Him
                </a>
             </div>
          </div>

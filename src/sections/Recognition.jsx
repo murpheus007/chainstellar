@@ -39,10 +39,10 @@ function Recognitions() {
       <section className='py-16 bg-background text-gray-200'>
          <div className='max-w-6xl mx-auto px-6'>
             {/* Section Heading */}
-            <p className='inline bg-neutral-600 p-2 text-sm text-white uppercase rounded-sm mb-2'>
+            <p className='inline bg-neutral-600 p-2 text-sm text-white uppercase rounded-sm mb-1'>
                His
             </p>
-            <h2 className='text-2xl md:text-3xl font-bold text-white mt-2 mb-12 font-serif'>
+            <h2 className='text-2xl md:text-3xl font-bold text-text mt-2 mb-12'>
                Recognitions
             </h2>
 
