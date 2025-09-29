@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 
 const ITEMS_PER_PAGE = 5;
@@ -128,25 +128,40 @@ const works = [
 
 function BestWorks() {
    const [currentPage, setCurrentPage] = useState(1);
+   const sectionRef = useRef(null); // ✅ 1. Create a ref
 
    const totalPages = Math.ceil(works.length / ITEMS_PER_PAGE);
 
+   const scrollToTop = () => {
+      sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+   };
+
    const handlePrev = () => {
-      if (currentPage > 1) setCurrentPage(currentPage - 1);
+      if (currentPage > 1) {
+         setCurrentPage(currentPage - 1);
+         scrollToTop(); // ✅ Scroll to top after updating
+      }
    };
 
    const handleNext = () => {
-      if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+      if (currentPage < totalPages) {
+         setCurrentPage(currentPage + 1);
+         scrollToTop(); // ✅ Scroll to top after updating
+      }
    };
 
    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
    const currentWorks = works.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
    return (
-      <section className='py-16 bg-background text-gray-200'>
+      <section
+         ref={sectionRef} // ✅ 2. Attach ref to section
+         className='py-16 bg-background text-gray-200'>
          <div className='max-w-6xl mx-auto px-6'>
             {/* Section Heading */}
-            <p className='inline bg-neutral-600 p-2 text-sm text-white uppercase rounded-sm mb-2'> His </p>
+            <p className='inline bg-neutral-600 p-2 text-sm text-white uppercase rounded-sm mb-2'>
+               His
+            </p>
             <h2 className='text-2xl md:text-3xl font-bold text-text mt-2 mb-6'>
                Best Works
             </h2>
@@ -171,9 +186,7 @@ function BestWorks() {
                         <h3 className='text-xl md:text-2xl font-bold text-text'>
                            {work.title}
                         </h3>
-                        <p className='text-text'>
-                           {work.description}
-                        </p>
+                        <p className='text-text'>{work.description}</p>
                         <a
                            href={work.link}
                            target='_blank'
@@ -186,6 +199,7 @@ function BestWorks() {
                   </div>
                ))}
             </div>
+
             {/* Pagination */}
             <div className='flex justify-center items-center gap-4 mt-12'>
                <button
