@@ -3,11 +3,15 @@ import { Menu, X, Sun, Moon } from 'lucide-react';
 
 function Navbar() {
    const [isOpen, setIsOpen] = useState(false);
+
+   // ✅ Smarter dark mode initialization (localStorage + system preference)
    const [darkMode, setDarkMode] = useState(() => {
-      return localStorage.getItem('theme') === 'dark';
+      const stored = localStorage.getItem('theme');
+      if (stored) return stored === 'dark';
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
    });
 
-   // Sync theme with <html> class + localStorage
+   // ✅ Sync theme with <html> class + localStorage
    useEffect(() => {
       const root = document.documentElement;
       if (darkMode) {
@@ -29,7 +33,8 @@ function Navbar() {
             {/* Hamburger */}
             <button
                onClick={() => setIsOpen(true)}
-               className='p-2 rounded-md cursor-pointer'>
+               className='p-2 rounded-md cursor-pointer'
+               aria-label='Open menu'>
                <Menu
                   className='text-white hover:text-gray-50 transition'
                   size={20}
@@ -54,25 +59,26 @@ function Navbar() {
             <div className='flex justify-end p-4'>
                <button
                   onClick={() => setIsOpen(false)}
-                  className='p-2 rounded-md cursor-pointer'>
-                  <X
-                     className='text-text font-bold transition'
-                     size={20}
-                  />
+                  className='p-2 rounded-md cursor-pointer'
+                  aria-label='Close menu'>
+                  <X className='text-text font-bold transition' size={20} />
                </button>
             </div>
 
             {/* Board content */}
             <div className='flex flex-col items-center gap-2 px-4'>
+               {/* ✅ Close drawer on link click */}
                <a
                   href='https://medium.com/@linchpinremainstheboss/about'
                   target='_blank'
                   rel='noopener noreferrer'
+                  onClick={() => setIsOpen(false)}
                   className='w-full py-2 bg-neutral-400 text-white text-[12px] text-center font-bold rounded-sm hover:bg-neutral-500 transition'>
                   Medium
                </a>
                <a
                   href='https://drive.google.com/file/d/1BfB-Z968JH3V_nFaR_MwrW2A0xJI9nAk/view'
+                  onClick={() => setIsOpen(false)}
                   className='w-full py-2 bg-primary text-white text-[12px] text-center font-bold rounded-sm hover:bg-blue-600 transition'>
                   Resume
                </a>
@@ -80,27 +86,20 @@ function Navbar() {
                {/* Dark/Light Toggle */}
                <button
                   onClick={() => setDarkMode(!darkMode)}
+                  aria-label='Toggle dark mode'
                   className={`w-full mt-4 flex items-center justify-center gap-2 py-2 px-3 text-[12px] font-bold rounded-md transition
-    ${
-       darkMode
-          ? 'bg-yellow-400 text-black hover:bg-yellow-300 shadow-md' // Light mode button
-          : 'bg-gray-800 text-white hover:bg-gray-700 shadow-md' // Dark mode button
-    }`}>
+                     ${
+                        darkMode
+                           ? 'bg-yellow-400 text-black hover:bg-yellow-300 shadow-md'
+                           : 'bg-gray-800 text-white hover:bg-gray-700 shadow-md'
+                     }`}>
                   {darkMode ? (
                      <>
-                        <Sun
-                           size={16}
-                           className='text-yellow-900'
-                        />{' '}
-                        Light Mode
+                        <Sun size={16} className='text-yellow-900' /> Light Mode
                      </>
                   ) : (
                      <>
-                        <Moon
-                           size={16}
-                           className='text-blue-300'
-                        />{' '}
-                        Dark Mode
+                        <Moon size={16} className='text-blue-300' /> Dark Mode
                      </>
                   )}
                </button>
