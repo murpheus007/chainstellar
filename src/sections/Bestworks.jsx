@@ -71,13 +71,13 @@ function BestWorks() {
             <p className='inline bg-neutral-600 p-2 text-sm text-white uppercase rounded-sm mb-2'>
                His
             </p>
-            <h2 className='text-2xl md:text-3xl font-bold text-text mt-2 mb-4'>
+            <h2 className='text-2xl md:text-3xl font-bold text-text mt-2 mb-1'>
                Best Works
             </h2>
 
             {/* Slider Container */}
             <div
-               className='relative h-[550px] md:h-[450px] w-full flex items-center justify-center'
+               className='relative h-[480px] md:h-[450px] w-full flex items-center justify-center'
                onTouchStart={onTouchStart}
                onTouchMove={onTouchMove}
                onTouchEnd={onTouchEnd}>
@@ -141,7 +141,7 @@ function BestWorks() {
             </div>
 
             {/* Ellipsis Indicators */}
-            <div className='flex justify-center items-center gap-2 mt-4 flex-wrap px-4'>
+            <div className='flex justify-center items-center gap-2 mt-2 flex-wrap px-4'>
                {works.map((_, index) => (
                   <button
                      key={index}
