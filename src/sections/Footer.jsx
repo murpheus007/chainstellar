@@ -37,7 +37,7 @@ function Footer() {
             <Linkedin size={20} className="text-white" />
           </a>
           <a
-            href="https://wa.me/2347040160134"
+            href="https://wa.me/2347044085646"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 bg-neutral-800 rounded-full hover:bg-primary transition"
