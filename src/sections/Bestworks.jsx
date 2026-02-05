@@ -98,6 +98,8 @@ function BestWorks() {
                            <img
                               src={work.image}
                               alt={work.title}
+                              loading='lazy'
+                              decoding='async'
                               className='w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105'
                            />
                         </div>

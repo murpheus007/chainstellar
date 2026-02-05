@@ -9,6 +9,8 @@ function Hero() {
                <img
                   src='/heroImage2.jpg'
                   alt='ChainStellar'
+                  fetchpriority='high'
+                  loading='eager'
                   className='w-64 h-64 md:w-96 md:h-96 rounded-full object-cover shadow-lg'
                />
             </div>

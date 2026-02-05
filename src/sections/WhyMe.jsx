@@ -33,6 +33,8 @@ function WhyMe() {
                <img
                   src='/whyme.jpg'
                   alt='Why work with me'
+                  loading='lazy'
+                  decoding='async'
                   className='aspect-video md:w-full md:max-h-80 rounded-lg object-cover'
                />
             </div>
