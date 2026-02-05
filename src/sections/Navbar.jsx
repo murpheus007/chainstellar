@@ -111,7 +111,7 @@ function Navbar() {
                   <MessageCircle size={14} /> Chat him
                </a>
                <a
-                  href='https://drive.google.com/drive/u/0/folders/1RPgPg80m7XjUxiCxc02WlYFeos6bBEcZ'
+                  href='https://drive.google.com/file/d/1nAsY13RYh51p-eF1UDLdVdIsGIxeYc4Q/view'
                   target='_blank'
                   rel='noopener noreferrer'
                   onClick={() => setIsOpen(false)}
