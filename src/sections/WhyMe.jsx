@@ -4,7 +4,7 @@ import { Mail } from 'lucide-react';
 function WhyMe() {
    return (
       <section className='py-16 bg-background text-gray-200'>
-         <div className='max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8'>
+         <div className='max-w-6xl mx-auto px-3 md:px-6 flex flex-col md:flex-row items-center gap-8'>
             {/* Left: Text */}
             <div className='flex-1 flex flex-col gap-4 w-full'>
                <div>

@@ -4,7 +4,7 @@ import { Twitter, Linkedin, MessageCircle, Send, PenTool } from "lucide-react";
 function Footer() {
   return (
     <footer className="py-8 bg-neutral-900 text-gray-200">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="max-w-6xl mx-auto px-3 md:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Left: Brand + Resume */}
         <div className="flex flex-col items-start gap-3">
           <h2 className="text-md font-bold text-white">chainstellar</h2>

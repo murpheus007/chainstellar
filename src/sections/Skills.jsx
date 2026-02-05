@@ -13,7 +13,7 @@ const skills = [
 function Skills() {
   return (
     <section className="py-16 bg-primary text-gray-200">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-3 md:px-6">
         <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
           Skills
         </h2>

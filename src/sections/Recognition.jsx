@@ -37,7 +37,7 @@ const recognitions = [
 function Recognitions() {
    return (
       <section className='py-16 bg-background text-gray-200'>
-         <div className='max-w-6xl mx-auto px-6'>
+         <div className='max-w-6xl mx-auto px-3 md:px-6'>
             {/* Section Heading */}
             <p className='inline bg-neutral-600 p-2 text-sm text-white uppercase rounded-sm mb-1'>
                His

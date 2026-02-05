@@ -26,20 +26,22 @@ function Navbar() {
    return (
       <>
          {/* Navbar */}
-         <nav className='fixed top-0 left-0 w-full flex items-center justify-between px-4 py-1 bg-primary z-50'>
-            {/* Logo */}
-            <h1 className='text-md font-bold text-white'>chainstellar</h1>
+         <nav className='fixed top-0 left-0 w-full bg-primary z-50 px-3 md:px-6 py-1'>
+            <div className='max-w-6xl mx-auto flex items-center justify-between'>
+               {/* Logo */}
+               <h1 className='text-md font-bold text-white'>chainstellar</h1>
 
-            {/* Hamburger */}
-            <button
-               onClick={() => setIsOpen(true)}
-               className='p-2 rounded-md cursor-pointer'
-               aria-label='Open menu'>
-               <Menu
-                  className='text-white hover:text-gray-50 transition'
-                  size={20}
-               />
-            </button>
+               {/* Hamburger */}
+               <button
+                  onClick={() => setIsOpen(true)}
+                  className='p-2 rounded-md cursor-pointer'
+                  aria-label='Open menu'>
+                  <Menu
+                     className='text-white hover:text-gray-50 transition'
+                     size={20}
+                  />
+               </button>
+            </div>
          </nav>
 
          {/* Overlay */}
@@ -77,7 +79,17 @@ function Navbar() {
                   Medium
                </a>
                <a
-                  href='https://drive.google.com/file/d/1BfB-Z968JH3V_nFaR_MwrW2A0xJI9nAk/view'
+                  href='https://wa.me/2347044085646'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  onClick={() => setIsOpen(false)}
+                  className='w-full py-2 bg-emerald-600 text-white text-[12px] text-center font-bold rounded-sm hover:bg-emerald-700 transition'>
+                  Chat him
+               </a>
+               <a
+                  href='https://drive.google.com/file/d/1BfB-Z968JH3V_nFaR_MwrW2A0xJI9nAk/view?usp=drivesdk'
+                  target='_blank'
+                  rel='noopener noreferrer'
                   onClick={() => setIsOpen(false)}
                   className='w-full py-2 bg-primary text-white text-[12px] text-center font-bold rounded-sm hover:bg-blue-600 transition'>
                   Resume
