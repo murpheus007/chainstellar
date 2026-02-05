@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { works } from '../static/works';
 
 function BestWorks() {
    const [activeIndex, setActiveIndex] = useState(0);
+   const touchStart = useRef(null);
+   const touchEnd = useRef(null);
+
+   const minSwipeDistance = 50;
 
    const handleNext = () => {
       setActiveIndex((prev) => (prev + 1) % works.length);
@@ -11,6 +15,33 @@ function BestWorks() {
 
    const handlePrev = () => {
       setActiveIndex((prev) => (prev - 1 + works.length) % works.length);
+   };
+
+   // ✅ Auto-swipe every 3 seconds
+   useEffect(() => {
+      const interval = setInterval(() => {
+         handleNext();
+      }, 3000);
+      return () => clearInterval(interval);
+   }, [activeIndex]);
+
+   const onTouchStart = (e) => {
+      touchEnd.current = null;
+      touchStart.current = e.targetTouches[0].clientX;
+   };
+
+   const onTouchMove = (e) => {
+      touchEnd.current = e.targetTouches[0].clientX;
+   };
+
+   const onTouchEnd = () => {
+      if (!touchStart.current || !touchEnd.current) return;
+      const distance = touchStart.current - touchEnd.current;
+      const isLeftSwipe = distance > minSwipeDistance;
+      const isRightSwipe = distance < -minSwipeDistance;
+
+      if (isLeftSwipe) handleNext();
+      if (isRightSwipe) handlePrev();
    };
 
    const getCardStyle = (index) => {
@@ -45,7 +76,11 @@ function BestWorks() {
             </h2>
 
             {/* Slider Container */}
-            <div className='relative h-[600px] md:h-[450px] w-full flex items-center justify-center'>
+            <div
+               className='relative h-[600px] md:h-[450px] w-full flex items-center justify-center'
+               onTouchStart={onTouchStart}
+               onTouchMove={onTouchMove}
+               onTouchEnd={onTouchEnd}>
                {works.map((work, index) => (
                   <div
                      key={work.id}
@@ -54,16 +89,16 @@ function BestWorks() {
                         if (index === (activeIndex - 1 + len) % len) handlePrev();
                         if (index === (activeIndex + 1) % len) handleNext();
                      }}
-                     className={`absolute h-full transition-all duration-500 ease-in-out w-[90%] md:w-[70%] lg:w-[60%] bg-neutral-900/50 rounded-xl overflow-hidden shadow-2xl border border-white/5 ${getCardStyle(
+                     className={`absolute transition-all duration-500 ease-in-out w-[90%] md:w-[70%] lg:w-[60%] bg-neutral-900/50 rounded-xl overflow-hidden shadow-2xl border border-white/5 ${getCardStyle(
                         index
                      )}`}>
-                     <div className='flex flex-col md:flex-row h-full'>
+                     <div className='flex flex-col md:flex-row'>
                         {/* Image */}
-                        <div className='w-full md:w-1/2 h-64 md:h-auto'>
+                        <div className='w-full md:w-1/2 overflow-hidden bg-black/20 aspect-video md:aspect-auto'>
                            <img
                               src={work.image}
                               alt={work.title}
-                              className='w-full h-full object-cover'
+                              className='w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105'
                            />
                         </div>
 
