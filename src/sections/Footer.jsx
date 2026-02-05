@@ -9,7 +9,7 @@ function Footer() {
         <div className="flex flex-col items-start gap-3">
           <h2 className="text-md font-bold text-white">chainstellar</h2>
           <a
-            href="https://drive.google.com/file/d/1BfB-Z968JH3V_nFaR_MwrW2A0xJI9nAk/view"
+            href="https://drive.google.com/drive/u/0/folders/1RPgPg80m7XjUxiCxc02WlYFeos6bBEcZ"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full py-2 bg-neutral-400 text-white text-[12px] text-center font-bold rounded-sm hover:bg-neutral-500 transition"

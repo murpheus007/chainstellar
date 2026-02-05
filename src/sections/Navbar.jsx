@@ -87,7 +87,7 @@ function Navbar() {
                   Chat him
                </a>
                <a
-                  href='https://drive.google.com/file/d/1BfB-Z968JH3V_nFaR_MwrW2A0xJI9nAk/view?usp=drivesdk'
+                  href='https://drive.google.com/drive/u/0/folders/1RPgPg80m7XjUxiCxc02WlYFeos6bBEcZ'
                   target='_blank'
                   rel='noopener noreferrer'
                   onClick={() => setIsOpen(false)}
