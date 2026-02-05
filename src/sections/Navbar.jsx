@@ -1,15 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import {
+   Menu,
+   X,
+   Sun,
+   Moon,
+   MessageCircle,
+   FileText,
+   PenTool,
+} from 'lucide-react';
 
 function Navbar() {
    const [isOpen, setIsOpen] = useState(false);
 
-   // ✅ Smarter dark mode initialization (localStorage + system preference)
+   // ✅ Initial theme based on localStorage or device preference
    const [darkMode, setDarkMode] = useState(() => {
       const stored = localStorage.getItem('theme');
       if (stored) return stored === 'dark';
       return window.matchMedia('(prefers-color-scheme: dark)').matches;
    });
+
+   // ✅ Listen for device/system theme changes
+   useEffect(() => {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const handleChange = (e) => {
+         // Only auto-update if the user hasn't manually toggled it in this session/stored it
+         if (!localStorage.getItem('theme')) {
+            setDarkMode(e.matches);
+         }
+      };
+
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+   }, []);
 
    // ✅ Sync theme with <html> class + localStorage
    useEffect(() => {
@@ -29,7 +51,9 @@ function Navbar() {
          <nav className='fixed top-0 left-0 w-full bg-primary z-50 px-3 md:px-6 py-1'>
             <div className='max-w-6xl mx-auto flex items-center justify-between'>
                {/* Logo */}
-               <h1 className='text-md font-bold text-white'>chainstellar</h1>
+               <h1 className='text-md font-bold text-white uppercase tracking-wider'>
+                  chainstellar
+               </h1>
 
                {/* Hamburger */}
                <button
@@ -68,31 +92,31 @@ function Navbar() {
             </div>
 
             {/* Board content */}
-            <div className='flex flex-col items-center gap-2 px-4'>
+            <div className='flex flex-col items-center gap-3 px-4'>
                {/* ✅ Close drawer on link click */}
                <a
                   href='https://medium.com/@linchpinremainstheboss/about'
                   target='_blank'
                   rel='noopener noreferrer'
                   onClick={() => setIsOpen(false)}
-                  className='w-full py-2 bg-neutral-400 text-white text-[12px] text-center font-bold rounded-sm hover:bg-neutral-500 transition'>
-                  Medium
+                  className='w-full py-2 bg-neutral-400 text-white text-[12px] flex items-center justify-center gap-2 font-bold rounded-sm hover:bg-neutral-500 transition'>
+                  <PenTool size={14} /> Medium
                </a>
                <a
                   href='https://wa.me/2347044085646'
                   target='_blank'
                   rel='noopener noreferrer'
                   onClick={() => setIsOpen(false)}
-                  className='w-full py-2 bg-emerald-600 text-white text-[12px] text-center font-bold rounded-sm hover:bg-emerald-700 transition'>
-                  Chat him
+                  className='w-full py-2 bg-emerald-600 text-white text-[12px] flex items-center justify-center gap-2 font-bold rounded-sm hover:bg-emerald-700 transition'>
+                  <MessageCircle size={14} /> Chat him
                </a>
                <a
                   href='https://drive.google.com/drive/u/0/folders/1RPgPg80m7XjUxiCxc02WlYFeos6bBEcZ'
                   target='_blank'
                   rel='noopener noreferrer'
                   onClick={() => setIsOpen(false)}
-                  className='w-full py-2 bg-primary text-white text-[12px] text-center font-bold rounded-sm hover:bg-blue-600 transition'>
-                  Resume
+                  className='w-full py-2 bg-primary text-white text-[12px] flex items-center justify-center gap-2 font-bold rounded-sm hover:bg-blue-600 transition'>
+                  <FileText size={14} /> Resume
                </a>
 
                {/* Dark/Light Toggle */}
