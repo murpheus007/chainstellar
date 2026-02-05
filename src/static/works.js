@@ -5,7 +5,7 @@ export const works = [
       description:
          'Why the Average Nigerian Uses Products Differently, and What That Means for Your Solana Startup.',
       link: 'https://medium.com/@linchpinremainstheboss/built-to-extract-why-the-average-nigerian-uses-products-differently-and-what-that-means-for-your-91be26933702',
-      image: '/bte.jpg',
+      image: '/bte.avif',
    },
    {
       id: 2,
@@ -13,7 +13,7 @@ export const works = [
       description:
          'The Four Quarters Of SuperteamNG 2025',
       link: 'https://medium.com/@linchpinremainstheboss/the-four-quarters-of-superteamng-2025-beyond-the-optics-8042f704b22c',
-      image: '/beyond_the_optics.jpg',
+      image: '/beyond_the_optics.avif',
    },
    {
       id: 3,
@@ -37,7 +37,7 @@ export const works = [
       description:
          'A Cultural Adjustment Fostering Economic Viability in Web3. There was a cultural adjustment. But what was the culture?',
       link: 'https://medium.com/@linchpinremainstheboss/compressed-nfts-on-solana-a-cultural-adjustment-fostering-economic-viability-in-web3-18b64a6c2db0',
-      image: '/compressed-nfts.jpg',
+      image: '/compressed-nfts.avif',
    },
    {
       id: 6,
@@ -53,7 +53,7 @@ export const works = [
       description:
          'deBridge aims to hit $100M daily transactions, boosting DeFi with secure cross-chain tech.',
       link: 'https://x.com/chainstellar/status/1861709020848910600',
-      image: '/debridge.jpg',
+      image: '/debridge.avif',
    },
    {
       id: 8,
@@ -61,7 +61,7 @@ export const works = [
       description:
          'Likens MagicBlock to an F1 engine, enhancing Solana’s speed and scalability for real-time applications through Ephemeral Rollups technology.',
       link: 'https://x.com/chainstellar/status/1901272546911100969',
-      image: '/magicblock.jpg',
+      image: '/magicblock.avif',
    },
    {
       id: 9,
@@ -77,7 +77,7 @@ export const works = [
       description:
          'AgriDex uses Solana’s blockchain to cut Nigeria’s N3.5 trillion post-harvest losses by 40%, boosting farmer incomes by 50%.',
       link: 'https://x.com/chainstellar/status/1861537600349089953',
-      image: '/agridex.jpg',
+      image: '/agridex.avif',
    },
    {
       id: 11,
@@ -85,7 +85,7 @@ export const works = [
       description:
          'Citrea, a layer-2 ZK rollup, enhances Bitcoin with smart contracts and Ðapps, tapping into its $2.1T idle capital while leveraging BitVM for secure, trust-minimized bridging.',
       link: 'https://x.com/chainstellar/status/1930376951199363403',
-      image: '/citrea.jpg',
+      image: '/citrea.avif',
    },
    {
       id: 12,
@@ -93,7 +93,7 @@ export const works = [
       description:
          'HIO Music, a Solana-powered platform, promises 100% royalties to artists, revolutionizing the music industry with blockchain transparency.',
       link: 'https://x.com/chainstellar/status/1889163795026571597',
-      image: '/hio-music.jpg',
+      image: '/hio-music.avif',
    },
    {
       id: 13,
@@ -109,7 +109,7 @@ export const works = [
       description:
          'Flare Network boosts XRP’s utility post-SEC lawsuit, leveraging the Howey Test to enhance decentralization.',
       link: 'https://x.com/chainstellar/status/1934052855461110185',
-      image: '/flare-network.jpg',
+      image: '/flare-network.avif',
    },
    {
       id: 15,
