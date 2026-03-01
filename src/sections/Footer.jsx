@@ -85,7 +85,7 @@ function FooterSocial({ href, icon, label }) {
          <ArrowUpRight 
             size={16} 
             strokeWidth={3}
-            className='ml-auto text-primary dark:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300' 
+            className='ml-auto text-primary dark:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 transition-colors' 
          />
       </a>
    );
