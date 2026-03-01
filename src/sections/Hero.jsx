@@ -25,7 +25,7 @@ function Hero() {
                   <h1 className='text-5xl md:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tighter text-text mb-8'>
                      Creative <span className='text-primary'>Writer</span> 
                      <br /> 
-                     & Technical <span className='text-primary-dark dark:text-primary-light'>Analyst</span>
+                     & <span className='text-primary-dark dark:text-primary-light'>Technical Analyst</span>
                   </h1>
 
                   <p className='text-lg md:text-xl text-text-muted dark:text-white/80 leading-relaxed max-w-[700px] mx-auto lg:mx-0 mb-12 font-medium'>

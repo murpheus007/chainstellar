@@ -47,7 +47,7 @@ function WhyMe() {
                   <div className='absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent'></div>
                   <div className='absolute bottom-8 left-8'>
                      <p className='text-white font-black text-2xl uppercase tracking-tighter'>Chainstellar</p>
-                     <p className='text-white/60 text-xs font-bold uppercase tracking-widest'>Technical Analyst</p>
+                     <p className='text-white/60 text-xs font-bold uppercase tracking-widest'>Creator, Writer</p>
                   </div>
                </div>
             </div>

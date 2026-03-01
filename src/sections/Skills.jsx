@@ -71,7 +71,7 @@ function Skills() {
           {skills.map((skill) => (
             <div
               key={skill.id}
-              className="group p-8 bg-surface rounded-md border border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-soft flex flex-col items-start gap-4"
+              className="group p-8 bg-surface rounded-md border border-border/50 dark:border-white/15 hover:border-primary/50 transition-all duration-500 hover:shadow-soft flex flex-col items-start gap-4"
             >
               <div className={`p-4 rounded-md ${skill.color} group-hover:scale-110 transition-transform duration-500`}>
                 {skill.icon}

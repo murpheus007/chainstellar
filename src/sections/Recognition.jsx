@@ -32,7 +32,7 @@ const recognitions = [
    },
    {
       id: 5,
-      title: 'Essay Competition Runner-Up',
+      title: 'State Level Essay',
       year: '2023',
       desc: 'Achieved 1st Runner-Up in the My Dream Imo State by 2040 Essay Competition (Topic: Rural Economy)',
       link: 'https://www.facebook.com/share/17CxQn2Nbu/?mibextid=wwXIfr',

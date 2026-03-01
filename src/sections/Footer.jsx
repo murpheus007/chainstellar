@@ -63,13 +63,8 @@ function Footer() {
                   </span>
                   <div className='h-1 w-1 rounded-full bg-border hidden md:block'></div>
                   <span className='text-[10px] font-bold text-text-muted uppercase tracking-[0.2em]'>
-                     Chainstellar Studios
+                     Chainstellar
                   </span>
-               </div>
-               
-               <div className='flex flex-row items-center gap-8 md:gap-4'>
-                  <a href='#' className='text-[10px] font-bold text-text-muted hover:text-primary transition-colors uppercase tracking-[0.2em]'>Privacy</a>
-                  <a href='#' className='text-[10px] font-bold text-text-muted hover:text-primary transition-colors uppercase tracking-[0.2em]'>Terms</a>
                </div>
             </div>
          </div>
@@ -83,7 +78,7 @@ function FooterSocial({ href, icon, label }) {
          href={href}
          target='_blank'
          rel='noopener noreferrer'
-         className='group flex items-center gap-3 px-5 py-3 rounded-md bg-surface-muted dark:bg-white/5 border border-border/50 hover:border-primary/50 transition-all duration-300 w-full md:w-auto'
+         className='group flex items-center gap-3 px-5 py-3 rounded-md bg-surface-muted dark:bg-white/5 border border-text/10 dark:border-white/10 hover:border-primary/50 dark:hover:border-primary transition-all duration-300 w-full md:w-auto shadow-sm hover:shadow-md'
       >
          <span className='text-text-muted group-hover:text-primary transition-colors'>{icon}</span>
          <span className='text-xs font-bold text-text group-hover:text-primary transition-colors'>{label}</span>
