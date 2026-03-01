@@ -36,15 +36,18 @@ function Navbar() {
 
    // ✅ Sync manual toggle with <html> class + localStorage
    const toggleTheme = () => {
-      const newMode = !darkMode;
-      setDarkMode(newMode);
-      
       const root = document.documentElement;
-      if (newMode) {
-         root.classList.add('dark');
+      const isDark = root.classList.toggle('dark');
+      
+      // Sync React state for UI (icons)
+      setDarkMode(isDark);
+      
+      // Persist preference
+      if (isDark) {
+         root.setAttribute('data-theme', 'dark');
          localStorage.setItem('theme', 'dark');
       } else {
-         root.classList.remove('dark');
+         root.setAttribute('data-theme', 'light');
          localStorage.setItem('theme', 'light');
       }
    };
