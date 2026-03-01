@@ -28,9 +28,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
             return localStorage.getItem('theme');
          }
-         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark';
-         }
          return 'light';
       })();
    
@@ -47,13 +44,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
    }
 
    applyTheme();
-
-   // Listen for system changes ONLY if user hasn't set an override
-   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-      if (!localStorage.getItem('theme')) {
-         applyTheme();
-      }
-   });
 </script>
 
 <title>{title}</title>

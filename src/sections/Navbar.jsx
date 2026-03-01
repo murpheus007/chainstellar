@@ -52,9 +52,9 @@ function Navbar() {
    return (
       <>
          {/* Navbar Container */}
-         <div className='fixed top-0 left-0 w-full z-[100] md:px-4 md:py-4 pointer-events-none'>
+         <div className='fixed top-0 left-0 w-full z-[100] md:px-4 md:py-4'>
             <nav 
-               className={`w-full md:max-w-6xl md:mx-auto flex items-center justify-between px-6 py-3 rounded-none md:rounded-md transition-all duration-500 pointer-events-auto ${
+               className={`w-full md:max-w-6xl md:mx-auto flex items-center justify-between px-6 py-3 rounded-none md:rounded-md transition-all duration-500 ${
                   scrolled 
                   ? 'bg-surface/80 backdrop-blur-xl shadow-soft border-b md:border border-border/50' 
                   : 'bg-transparent'
@@ -100,7 +100,7 @@ function Navbar() {
          {/* Overlay Menu */}
          <div
             className={`fixed inset-0 z-[120] transition-all duration-700 ${
-               isOpen ? 'visible opacity-100' : 'invisible opacity-0'
+               isOpen ? 'visible opacity-100' : 'invisible opacity-0 pointer-events-none'
             }`}
          >
             {/* Blurry Backdrop */}

@@ -35,7 +35,7 @@
 :root.dark,
 [data-theme='dark'],
 .dark {
-  --background: #050505 !important;
+  --background: #000000 !important;
   --surface: #0f0f0f !important;
   --surface-muted: #1a1a1a !important;
   --text: #f8fafc !important;
