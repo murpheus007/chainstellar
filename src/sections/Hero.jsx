@@ -48,7 +48,7 @@ function Hero() {
                         href='https://t.me/chainstellar1'
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='group px-8 py-3 bg-surface-muted dark:bg-white/10 text-text dark:text-white border border-border dark:border-white/20 font-bold rounded-md flex items-center gap-3 transition-all hover:bg-surface hover:border-primary/50'
+                        className='group px-8 py-3 bg-surface-muted dark:bg-white/10 text-primary dark:text-white border border-primary dark:border-white/20 font-bold rounded-md flex items-center gap-3 transition-all hover:bg-surface hover:border-primary/50'
                      >
                         <Send size={20} className='text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform' />
                         <span>Chat Him</span>

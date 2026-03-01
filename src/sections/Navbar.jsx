@@ -121,7 +121,7 @@ function Navbar() {
                      <div className='w-8 h-8 bg-primary rounded-sm flex items-center justify-center rotate-3'>
                         <span className='text-white font-black text-lg'>C</span>
                      </div>
-                     <span className='font-black text-text uppercase tracking-tight'>
+                     <span className='font-black text-text lowercase tracking-tight'>
                         chain<span className='text-primary'>stellar</span>
                      </span>
                   </div>
