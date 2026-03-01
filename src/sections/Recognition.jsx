@@ -5,14 +5,14 @@ const recognitions = [
    {
       id: 1,
       title: '10x plus SuperteamEarn Bounty Winner',
-      year: '2025',
+      year: '2026',
       desc: 'Recognized for excellence in technical and creative tasks across the Superteam ecosystem.',
       link: 'https://earn.superteam.fun/',
    },
    {
       id: 2,
       title: '6x plus ScribbleDAO Bounty Winner',
-      year: '2025',
+      year: '2026',
       desc: 'Distinguished for high-impact creative and technical writing',
       link: 'https://app.mirror.scribbledao.com/dashboard',
    },

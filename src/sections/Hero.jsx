@@ -19,7 +19,7 @@ function Hero() {
                <div className='flex-1 text-center lg:text-left'>
                   <div className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/20 text-primary text-xs font-bold tracking-widest uppercase mb-8 animate-fade-in'>
                      <Sparkles size={14} />
-                     <span>Available for projects 2026</span>
+                     <span>Available for Work</span>
                   </div>
 
                   <h1 className='text-5xl md:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tighter text-text mb-8'>
