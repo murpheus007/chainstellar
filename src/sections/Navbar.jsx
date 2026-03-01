@@ -17,49 +17,37 @@ import {
 function Navbar() {
    const [isOpen, setIsOpen] = useState(false);
    const [scrolled, setScrolled] = useState(false);
-
-   // ✅ Initial theme state (default to light, updated in useEffect)
    const [darkMode, setDarkMode] = useState(false);
 
-   // ✅ Initial check and system preference listener
+   // ✅ Initial check on mount
    useEffect(() => {
-      const stored = localStorage.getItem('theme');
-      if (stored) {
-         setDarkMode(stored === 'dark');
-      } else {
-         setDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
-      }
-
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const handleChange = (e) => {
-         if (!localStorage.getItem('theme')) {
-            setDarkMode(e.matches);
-         }
-      };
+      const isDark = document.documentElement.classList.contains('dark');
+      setDarkMode(isDark);
 
       const handleScroll = () => {
          setScrolled(window.scrollY > 20);
       };
 
-      mediaQuery.addEventListener('change', handleChange);
       window.addEventListener('scroll', handleScroll);
       return () => {
-         mediaQuery.removeEventListener('change', handleChange);
          window.removeEventListener('scroll', handleScroll);
       };
    }, []);
 
-   // ✅ Sync theme with <html> class + localStorage
-   useEffect(() => {
+   // ✅ Sync manual toggle with <html> class + localStorage
+   const toggleTheme = () => {
+      const newMode = !darkMode;
+      setDarkMode(newMode);
+      
       const root = document.documentElement;
-      if (darkMode) {
+      if (newMode) {
          root.classList.add('dark');
          localStorage.setItem('theme', 'dark');
       } else {
          root.classList.remove('dark');
          localStorage.setItem('theme', 'light');
       }
-   }, [darkMode]);
+   };
 
    return (
       <>
@@ -86,7 +74,7 @@ function Navbar() {
                <div className='flex items-center gap-4'>
                   {/* Theme Toggle */}
                   <button
-                     onClick={() => setDarkMode(!darkMode)}
+                     onClick={toggleTheme}
                      className={`p-2.5 rounded-md transition-all duration-300 shadow-lg ${
                         darkMode 
                         ? 'bg-amber-400/10 text-amber-400 border border-amber-400/20 hover:bg-amber-400/20' 
