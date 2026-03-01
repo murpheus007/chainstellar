@@ -23,24 +23,37 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <meta name="color-scheme" content="light dark" />
 
 <script is:inline>
-   const theme = (() => {
-      if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-         return localStorage.getItem('theme');
+   function applyTheme() {
+      const theme = (() => {
+         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            return localStorage.getItem('theme');
+         }
+         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+         }
+         return 'light';
+      })();
+   
+      if (theme === 'dark') {
+         document.documentElement.classList.add('dark');
+         document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+         document.documentElement.classList.remove('dark');
+         document.documentElement.setAttribute('data-theme', 'light');
       }
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-         return 'dark';
-      }
-      return 'light';
-   })();
-
-   if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-      document.documentElement.setAttribute('data-theme', 'dark');
-   } else {
-      document.documentElement.classList.remove('dark');
-      document.documentElement.setAttribute('data-theme', 'light');
+      
+      // We don't force save it unless the user toggles it manually in the UI
+      // to avoid overwhelming their choice if they change system settings.
    }
-   window.localStorage.setItem('theme', theme);
+
+   applyTheme();
+
+   // Listen for system changes ONLY if user hasn't set an override
+   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (!localStorage.getItem('theme')) {
+         applyTheme();
+      }
+   });
 </script>
 
 <title>{title}</title>

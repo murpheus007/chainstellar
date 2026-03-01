@@ -3,9 +3,9 @@ import { Sparkles, Calendar, Send, MousePointer2 } from 'lucide-react';
 
 function Hero() {
    return (
-      <section className='relative min-h-[90vh] flex items-center justify-center pt-32 pb-20 overflow-hidden bg-background dark:bg-black'>
+      <section className='relative min-h-[90vh] flex items-center justify-center pt-32 pb-20 overflow-hidden bg-background'>
          {/* Very dark background gradient for Dark Mode */}
-         <div className='absolute inset-0 z-0 hidden dark:block bg-[radial-gradient(circle_at_50%_50%,rgba(21,93,252,0.15),rgba(0,0,0,1))]'></div>
+         <div className='absolute inset-0 z-0 opacity-0 dark:opacity-100 transition-opacity duration-1000 bg-[radial-gradient(circle_at_50%_50%,rgba(21,93,252,0.15),rgba(0,0,0,1))]'></div>
          {/* Background Elements */}
          <div className='absolute inset-0 z-0 overflow-hidden pointer-events-none'>
             <div className='absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 dark:bg-primary/5 rounded-full blur-[120px]'></div>
