@@ -1,0 +1,22 @@
+---
+const { 
+  name = "Chainstellar",
+  url = "https://chainstellar.vercel.app",
+  description = "Creative Writer & Technical Analyst in the blockchain ecosystem"
+} = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": name,
+  "url": url,
+  "description": description,
+  "author": {
+    "@type": "Person",
+    "name": "Damian D. Chidera",
+    "alternateName": "Chainstellar"
+  }
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

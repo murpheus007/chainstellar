@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chainstellar.vercel.app/sitemap-index.xml

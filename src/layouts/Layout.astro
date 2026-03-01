@@ -1,4 +1,7 @@
 ---
+import BaseHead from "../components/BaseHead.astro";
+import StructuredData from "../components/StructuredData.astro";
+
 interface Props {
 	title?: string;
 	description?: string;
@@ -6,83 +9,15 @@ interface Props {
 
 const { 
 	title = "Chainstellar – Portfolio", 
-	description = "Because you want to win. And Chainstellar loves winning too." 
+	description = "Creative Writer & Technical Analyst in the blockchain ecosystem" 
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <meta charset="UTF-8" />
-      <link
-         rel="icon"
-         type="image/svg+xml"
-         href="/favicon.jpg" />
-      <meta
-         name="viewport"
-         content="width=device-width, initial-scale=1.0" />
-      <meta name="color-scheme" content="light dark" />
-      
-      <script is:inline>
-         const theme = (() => {
-            if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-               return localStorage.getItem('theme');
-            }
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-               return 'dark';
-            }
-            return 'light';
-         })();
-      
-         if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
-         } else {
-            document.documentElement.classList.remove('dark');
-         }
-         window.localStorage.setItem('theme', theme);
-      </script>
-      <title>{title}</title>
-      <meta
-         name="description"
-         content={description} />
-      <meta
-         name="keywords"
-         content="Chainstellar , portfolio, web developer, blockchain, chainstellar" />
-      <meta
-         name="author"
-         content="Chainstellar " />
-
-      <meta
-         property="og:title"
-         content={title} />
-      <meta
-         property="og:description"
-         content={description} />
-      <meta
-         property="og:image"
-         content="https://chainstellar.vercel.app/preview.jpg" />
-      <meta
-         property="og:url"
-         content="https://chainstellar.vercel.app" />
-      <meta
-         property="og:type"
-         content="website" />
-
-      <meta
-         name="twitter:card"
-         content="summary_large_image" />
-      <meta
-         name="twitter:title"
-         content={title} />
-      <meta
-         name="twitter:description"
-         content={description} />
-      <meta
-         name="twitter:image"
-         content="https://chainstellar.vercel.app/preview.jpg" />
-      <meta
-         name="google-site-verification"
-         content="u4vMAOmSiJye3bBNcTl0xAbge191d7F52Mbw-it04gc" />
+      <BaseHead title={title} description={description} />
+      <StructuredData />
    </head>
    <body>
       <slot />
