@@ -1,0 +1,74 @@
+---
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { 
+	title = "Chainstellar – Portfolio", 
+	description = "Because you want to win. And Chainstellar loves winning too." 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <link
+         rel="icon"
+         type="image/svg+xml"
+         href="/favicon.jpg" />
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0" />
+      <title>{title}</title>
+      <meta
+         name="description"
+         content={description} />
+      <meta
+         name="keywords"
+         content="Chainstellar , portfolio, web developer, blockchain, chainstellar" />
+      <meta
+         name="author"
+         content="Chainstellar " />
+
+      <meta
+         property="og:title"
+         content={title} />
+      <meta
+         property="og:description"
+         content={description} />
+      <meta
+         property="og:image"
+         content="https://chainstellar.vercel.app/preview.jpg" />
+      <meta
+         property="og:url"
+         content="https://chainstellar.vercel.app" />
+      <meta
+         property="og:type"
+         content="website" />
+
+      <meta
+         name="twitter:card"
+         content="summary_large_image" />
+      <meta
+         name="twitter:title"
+         content={title} />
+      <meta
+         name="twitter:description"
+         content={description} />
+      <meta
+         name="twitter:image"
+         content="https://chainstellar.vercel.app/preview.jpg" />
+      <meta
+         name="google-site-verification"
+         content="u4vMAOmSiJye3bBNcTl0xAbge191d7F52Mbw-it04gc" />
+   </head>
+   <body>
+      <slot />
+   </body>
+</html>
+
+<style is:global>
+   @import "../index.css";
+</style>

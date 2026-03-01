@@ -1,24 +1,87 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
-/* Default (light mode) */
 @theme {
-  --color-background: #ffffff;
-  --color-surface: #f9f9f9;
+  --font-sans: 'Outfit', sans-serif;
+  
+  /* Brand Palette */
   --color-primary: #155dfc;
-  --color-accent: #1b3bb5;
-  --color-text: #061b44;
+  --color-primary-dark: #0d47c0;
+  --color-primary-light: #4c8aff;
+  
+  /* Semantic Tokens tied to CSS Variables */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
 }
 
-/* Dark mode overrides */
-:root.dark {
-  --color-background: #0a0a0a;
-  --color-surface: #1a1a1a;
-  --color-primary: #155dfc;
-  --color-accent: #91a5f4;
-  --color-text: #ffffff;
+/* Explicit Variables Outside Layers for Max Specifity */
+:root {
+  --background: #fbfcfe;
+  --surface: #ffffff;
+  --surface-muted: #f1f5f9;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --border: #e2e8f0;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
+/* Force dark mode when either .dark class or data-theme="dark" is present */
+:root.dark,
+[data-theme='dark'],
+.dark {
+  --background: #050505 !important;
+  --surface: #0f0f0f !important;
+  --surface-muted: #1a1a1a !important;
+  --text: #f8fafc !important;
+  --text-muted: #94a3b8 !important;
+  --border: #262626 !important;
+}
+
+@layer base {
+  html {
+    @apply min-h-screen w-full m-0 p-0 transition-colors duration-500;
+    background-color: var(--background) !important;
+    color: var(--text);
+  }
+
+  body {
+    @apply min-h-screen w-full overflow-x-hidden m-0 p-0 antialiased transition-colors duration-500 flex flex-col;
+    font-family: var(--font-sans);
+    background-color: var(--background) !important;
+    color: var(--text);
+  }
+
+  main {
+    @apply flex-1 w-full bg-background;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tighter font-black;
+  }
+}
+
+/* Custom Utilities for "Wow Factor" */
+@layer utilities {
+  .glass {
+    @apply bg-surface/70 backdrop-blur-xl border border-border/50;
+  }
+  
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-xl border border-white/5;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-primary to-primary-dark;
+  }
+
+  .shadow-soft {
+    box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.1);
+  }
+  
+  .dark .shadow-soft {
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  }
 }

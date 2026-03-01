@@ -1,6 +1,22 @@
 export const works = [
    {
       id: 1,
+      title: 'The Death of Selling',
+      description:
+         'A Case for Busha SOL-backed Loans, and Why Selling Your SOL is the Most Expensive Thing You Can Do',
+      link: 'https://abdulmutalibsulaiman.substack.com/p/the-death-of-selling',
+      image: '/busha.jpg',
+   },
+   {
+      id: 2,
+      title: 'Nigerians Are Unstable',
+      description:
+         'How Finna leverages Solana to solve the digital dollar underutilization in Africa’s largest economy.',
+      link: 'https://chainstellar.substack.com/p/nigerians-are-unstable',
+      image: '/nigerians-unstable.jpg',
+   },
+   {
+      id: 3,
       title: 'Built to Extract',
       description:
          'Why the Average Nigerian Uses Products Differently, and What That Means for Your Solana Startup.',
@@ -8,7 +24,7 @@ export const works = [
       image: '/bte.avif',
    },
    {
-      id: 2,
+      id: 4,
       title: 'Beyond the Optics.',
       description:
          'The Four Quarters Of SuperteamNG 2025',
@@ -16,7 +32,7 @@ export const works = [
       image: '/beyond_the_optics.avif',
    },
    {
-      id: 3,
+      id: 5,
       title: 'The Anatomy of a “Good” Stablecoin',
       description:
          'A breakdown of competing interests — from users to issuers — and how they influence what ‘good’ really means.',
@@ -24,7 +40,7 @@ export const works = [
       image: '/stablecoin.jpg',
    },
    {
-      id: 4,
+      id: 6,
       title: 'Memecoins: Epitomizing Decentralization',
       description:
          'What memecoins are, basic strategies, risks/rewards, and why they level the crypto playing field.',
@@ -32,7 +48,7 @@ export const works = [
       image: '/memecoins.jpg',
    },
    {
-      id: 5,
+      id: 7,
       title: 'Compressed NFTs on Solana',
       description:
          'A Cultural Adjustment Fostering Economic Viability in Web3. There was a cultural adjustment. But what was the culture?',
@@ -40,7 +56,7 @@ export const works = [
       image: '/compressed-nfts.avif',
    },
    {
-      id: 6,
+      id: 8,
       title: 'A Thread on Rumple Labs',
       description:
          '@0xJoshyy’s denied $900k airdrop loss highlights @RumpleLabs’ $23.76M TVL solution for instant point liquidity.',
@@ -48,7 +64,7 @@ export const works = [
       image: '/rumple-labs.jpg',
    },
    {
-      id: 7,
+      id: 9,
       title: 'A Thread on deBridgeFinance',
       description:
          'deBridge aims to hit $100M daily transactions, boosting DeFi with secure cross-chain tech.',
@@ -56,7 +72,7 @@ export const works = [
       image: '/debridge.avif',
    },
    {
-      id: 8,
+      id: 10,
       title: 'A Thread on MagicBlock',
       description:
          'Likens MagicBlock to an F1 engine, enhancing Solana’s speed and scalability for real-time applications through Ephemeral Rollups technology.',
@@ -64,7 +80,7 @@ export const works = [
       image: '/magicblock.avif',
    },
    {
-      id: 9,
+      id: 11,
       title: 'A Thread on MAIN AI DEX',
       description:
          'MAIN AI DEX leverages AI to revolutionize DeFi profitability, mirroring ChatGPT’s 2025 image generation surge.',
@@ -72,7 +88,7 @@ export const works = [
       image: '/main-ai-dex.jpg',
    },
    {
-      id: 10,
+      id: 12,
       title: 'A Thread on AgriDex Platform',
       description:
          'AgriDex uses Solana’s blockchain to cut Nigeria’s N3.5 trillion post-harvest losses by 40%, boosting farmer incomes by 50%.',
@@ -80,7 +96,7 @@ export const works = [
       image: '/agridex.avif',
    },
    {
-      id: 11,
+      id: 13,
       title: 'A Thread on Citrea',
       description:
          'Citrea, a layer-2 ZK rollup, enhances Bitcoin with smart contracts and Ðapps, tapping into its $2.1T idle capital while leveraging BitVM for secure, trust-minimized bridging.',
@@ -88,7 +104,7 @@ export const works = [
       image: '/citrea.avif',
    },
    {
-      id: 12,
+      id: 14,
       title: 'A Thread on HIO Music App',
       description:
          'HIO Music, a Solana-powered platform, promises 100% royalties to artists, revolutionizing the music industry with blockchain transparency.',
@@ -96,7 +112,7 @@ export const works = [
       image: '/hio-music.avif',
    },
    {
-      id: 13,
+      id: 15,
       title: 'A Thread on Stabble',
       description:
          'Announces the successful Token Generation Event (TGE) for $STB on May 22, 2025, with trading now live and opportunities for airdrops.',
@@ -104,7 +120,7 @@ export const works = [
       image: '/stabble.jpg',
    },
    {
-      id: 14,
+      id: 16,
       title: 'A Thread on Flare Network',
       description:
          'Flare Network boosts XRP’s utility post-SEC lawsuit, leveraging the Howey Test to enhance decentralization.',
@@ -112,7 +128,7 @@ export const works = [
       image: '/flare-network.avif',
    },
    {
-      id: 15,
+      id: 17,
       title: 'A Thread on Global Dollar USDG',
       description:
          "Discusses PYUSD's launch, institutional challenges with stablecoins, and USDG's introduction to bridge gaps, timed with recent regulatory and technological advancements.",
@@ -120,7 +136,7 @@ export const works = [
       image: '/usdg.jpg',
    },
    {
-      id: 16,
+      id: 18,
       title: 'A Thread on Token Mill',
       description:
          'Token Mill aims to counter scam-heavy platforms like @pumpdotfun with transparent Solana/Avalanche trading.',
