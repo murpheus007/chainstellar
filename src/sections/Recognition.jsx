@@ -44,7 +44,7 @@ function Recognitions() {
       <section className='py-12 md:py-24 bg-background'>
          <div className='max-w-6xl mx-auto px-4 md:px-6'>
                <div className='max-w-xl mb-16'>
-                  <div className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold tracking-[0.2em] uppercase mb-6'>
+                  <div className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary dark:bg-primary/20 dark:border-primary/40 dark:text-primary-light text-[10px] font-bold tracking-[0.2em] uppercase mb-6'>
                      <span>Milestones</span>
                   </div>
                   <h2 className='text-4xl md:text-6xl font-black text-text leading-[0.9] tracking-tighter transition-all'>

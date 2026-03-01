@@ -24,7 +24,7 @@ function BestWorks() {
             {/* Section Header */}
             <div className='flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16'>
                   <div className='max-w-xl'>
-                     <div className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold tracking-[0.2em] uppercase mb-6'>
+                     <div className='inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary dark:bg-primary/20 dark:border-primary/40 dark:text-primary-light text-[10px] font-bold tracking-[0.2em] uppercase mb-6'>
                         <span>Proof of Work</span>
                      </div>
                      <h2 className='text-4xl md:text-6xl font-black text-text leading-[0.9] tracking-tighter'>

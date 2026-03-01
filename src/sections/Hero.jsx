@@ -17,7 +17,7 @@ function Hero() {
             <div className='flex flex-col lg:flex-row items-center gap-16'>
                {/* Left: Text Content */}
                <div className='flex-1 text-center lg:text-left'>
-                  <div className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/20 text-primary text-xs font-bold tracking-widest uppercase mb-8 animate-fade-in'>
+                  <div className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/20 text-primary dark:bg-primary/20 dark:border-primary/40 dark:text-primary-light text-xs font-bold tracking-widest uppercase mb-8 animate-fade-in'>
                      <Sparkles size={14} />
                      <span>Available for Work</span>
                   </div>
