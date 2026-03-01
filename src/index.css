@@ -4,6 +4,9 @@
 @theme {
   --font-sans: 'Outfit', sans-serif;
   
+  /* Built-in variants configuration: Use the .dark class for dark mode */
+  --variant-dark: (&:where(.dark, .dark *));
+
   /* Brand Palette */
   --color-primary: #155dfc;
   --color-primary-dark: #0d47c0;
