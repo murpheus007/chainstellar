@@ -16,11 +16,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <link
    rel="icon"
    type="image/png"
-   href="/favicon.png" />
+   href={new URL('/favicon.png?v=1', Astro.site)} />
 <link
    rel="shortcut icon"
    type="image/png"
-   href="/favicon.png" />
+   href={new URL('/favicon.png?v=1', Astro.site)} />
+<link
+   rel="apple-touch-icon"
+   href={new URL('/favicon.png?v=1', Astro.site)} />
 <meta
    name="viewport"
    content="width=device-width, initial-scale=1.0" />
@@ -70,7 +73,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
    content={description} />
 <meta
    property="og:image"
-   content="https://chainstellar.vercel.app/preview.png" />
+   content={new URL('/preview.png?v=1', Astro.site)} />
 <meta
    property="og:url"
    content={canonicalURL} />
@@ -89,7 +92,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
    content={description} />
 <meta
    name="twitter:image"
-   content="https://chainstellar.vercel.app/preview.png" />
+   content={new URL('/preview.png?v=1', Astro.site)} />
 <meta
    name="google-site-verification"
    content="u4vMAOmSiJye3bBNcTl0xAbge191d7F52Mbw-it04gc" />
