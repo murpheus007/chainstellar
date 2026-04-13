@@ -162,7 +162,7 @@ function Navbar() {
                      onClick={() => setIsOpen(false)}
                   />
                   <MenuLink 
-                     href='https://drive.google.com/file/d/1zybt3MRw0e3dVw64XWedls_GqnoOjssq'
+                     href='https://drive.google.com/file/d/15qZJQnOudNKuMT8OY0Lg3y1V8Ap-Yr-C'
                      icon={<FileText size={20} />}
                      label='Curriculum Vitae'
                      desc='My professional journey'
