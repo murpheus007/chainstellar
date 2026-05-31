@@ -1,16 +1,37 @@
-# React + Vite
+# Chainstellar
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Live](https://img.shields.io/badge/Live-chainstellar.site-green.svg)](https://chainstellar.site)
+[![Stack](https://img.shields.io/badge/Stack-Astro%20%7C%20React%20%7C%20Docker-blue.svg)](#tech-stack)
 
-Currently, two official plugins are available:
+Portfolio website for Damian D. Chidera — deployed as a Docker container with Nginx on a production VPS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## React Compiler
+- **Framework:** Astro with React islands
+- **Styling:** TailwindCSS
+- **Deployment:** Docker Compose, Nginx reverse proxy
+- **SEO:** Structured data (Person schema), optimized meta tags, sitemap
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Live Site
 
-## Expanding the ESLint configuration
+[https://chainstellar.site](https://chainstellar.site)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Deployment
+
+```bash
+git clone https://github.com/murpheus007/chainstellar.git
+cd chainstellar
+cp .env.example .env
+docker compose up -d
+```
+
+## Features
+
+- Responsive design with dark/light theme toggle
+- SEO-optimized with structured data markup
+- Fast load times via Astro's static generation + React interactivity
+- Production deployment via Docker + Nginx
+
+## License
+
+MIT
