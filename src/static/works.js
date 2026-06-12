@@ -75,9 +75,17 @@ export const works = [
       id: 9,
       title: 'A Thread on Rumple Labs',
       description:
-         '@0xJoshyy’s denied $900k airdrop loss highlights @RumpleLabs’ $23.76M TVL solution for instant point liquidity.',
+         '@0xJoshyy\u2019s denied $900k airdrop loss highlights @RumppleLabs\u2019 $23.76M TVL solution for instant point liquidity.',
       link: 'https://x.com/chainstellar/status/1931430685731926190',
       image: '/rumple-labs.jpg',
+      threadLinks: [
+         'https://x.com/chainstellar/status/1931430685731926190',
+         'https://x.com/chainstellar/status/1931430691171901907',
+         'https://x.com/chainstellar/status/1931430699266875461',
+         'https://x.com/chainstellar/status/1931430704300077430',
+         'https://x.com/chainstellar/status/1931430710008549395',
+         'https://x.com/chainstellar/status/1931430715436028341',
+      ],
    },
    {
       id: 10,

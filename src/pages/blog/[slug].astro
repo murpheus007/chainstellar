@@ -30,12 +30,22 @@ try {
 
 <Layout title={`${data.title} — Chainstellar`} description={data.description}>
   <main class="pt-20 pb-20" style="background: var(--color-background); color: var(--color-text);">
-    {/* Back nav */}
-    <div class="max-w-4xl mx-auto px-6 py-6">
-      <a href="/blog" class="inline-flex items-center gap-2 text-sm font-mono transition-colors" style="color: var(--color-text-muted);" onmouseover="this.style.color='#155dfc'" onmouseout="this.style.color='var(--color-text-muted)'">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        All Articles
-      </a>
+    {/* Top nav bar with back link + theme toggle */}
+    <div class="max-w-4xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <a href="/blog" class="inline-flex items-center gap-2 text-sm font-mono transition-colors" style="color: var(--color-text-muted);" onmouseover="this.style.color='#155dfc'" onmouseout="this.style.color='var(--color-text-muted)'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          All Articles
+        </a>
+        <button
+          id="theme-toggle"
+          class="p-2.5 rounded-md transition-all duration-300 shadow-lg"
+          aria-label="Toggle theme"
+        >
+          <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
     </div>
 
     {/* Article Header */}
@@ -119,4 +129,76 @@ try {
   .article-content :global(code) { font-family: 'Space Mono', monospace; font-size: 0.85em; background: var(--color-surface-muted); padding: 0.15em 0.4em; border-radius: 4px; }
   .article-content :global(pre code) { background: none; padding: 0; }
   .article-content :global(hr) { border: none; height: 1px; background: var(--color-border); margin: 2em 0; }
+
+  /* Twitter thread styles */
+  .twitter-thread { display: flex; flex-direction: column; gap: 0; }
+  .twitter-thread .tweet {
+    padding: 1.5em 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .twitter-thread .tweet:last-child { border-bottom: none; }
+  .twitter-thread .tweet-text {
+    margin: 0 0 1em 0;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--color-text);
+    white-space: pre-wrap;
+  }
+  .twitter-thread .tweet-text a { color: #155dfc; text-decoration: underline; text-underline-offset: 3px; }
+  .twitter-thread .tweet-text a:hover { color: #0d47c0; }
+  .twitter-thread .thread-connector {
+    display: flex;
+    justify-content: center;
+    padding: 0.5em 0;
+    color: var(--color-text-muted);
+    font-size: 18px;
+  }
+  .twitter-thread figure { margin: 1em 0; }
+  .twitter-thread figure img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+  }
+  .twitter-thread figcaption {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    text-align: center;
+    margin-top: 0.4em;
+    font-family: 'Space Mono', monospace;
+  }
 </style>
+
+<script>
+  // Theme toggle
+  const themeBtn = document.getElementById('theme-toggle');
+  const sunIcon = themeBtn.querySelector('.theme-icon-sun');
+  const moonIcon = themeBtn.querySelector('.theme-icon-moon');
+
+  function updateThemeUI(isDark) {
+    if (isDark) {
+      sunIcon.style.display = 'none';
+      moonIcon.style.display = 'block';
+      themeBtn.style.background = 'rgba(250, 204, 21, 0.1)';
+      themeBtn.style.color = '#facc15';
+      themeBtn.style.border = '1px solid rgba(250, 204, 21, 0.2)';
+    } else {
+      sunIcon.style.display = 'block';
+      moonIcon.style.display = 'none';
+      themeBtn.style.background = 'rgba(79, 70, 229, 0.1)';
+      themeBtn.style.color = '#4f46e5';
+      themeBtn.style.border = '1px solid rgba(79, 70, 229, 0.2)';
+    }
+  }
+
+  const isDark = document.documentElement.classList.contains('dark');
+  updateThemeUI(isDark);
+
+  themeBtn.addEventListener('click', () => {
+    const root = document.documentElement;
+    const nowDark = root.classList.toggle('dark');
+    root.setAttribute('data-theme', nowDark ? 'dark' : 'light');
+    localStorage.setItem('theme', nowDark ? 'dark' : 'light');
+    updateThemeUI(nowDark);
+  });
+</script>

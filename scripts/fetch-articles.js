@@ -71,10 +71,23 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 function extractSubstackContent(html) {
   // Extract the article body from Substack HTML
-  // Substack puts article content in <article> inside main
-  
-  // 1. Try to extract from JSON-LD structured data first (most reliable)
-  const jsonLdMatch = html.match(/<script[^>]*type="\/ld\+json"[^>]*>([\s\S]+?)<\/script>/g);
+  // Substack structure: <div class="available-content"> <div class="body markup"> ... </div> ... </div>
+
+  // 1. Best: extract from available-content div (wraps full post body)
+  //    Match everything between the opening tag and the post-footer/contributor-footer
+  const availMatch = html.match(/<div[^>]*class="[^"]*available-content[^"]*"[^>]*>([\s\S]+?)(?=<div[^>]*class="[^"]*(?:post-footer|post-contributor-footer|comments-section))/);
+  if (availMatch && availMatch[1].length > 500) {
+    return { content: '<div class="body markup">' + cleanHtml(availMatch[1]) + '</div>', source: 'available-content' };
+  }
+
+  // 2. Fallback: body markup div
+  const bodyMarkup = html.match(/<div[^>]*class="[^"]*body markup[^"]*"[^>]*>([\s\S]+?)(?=<div[^>]*class="[^"]*(?:post-footer|post-contributor-footer))/);
+  if (bodyMarkup && bodyMarkup[1].length > 200) {
+    return { content: cleanHtml(bodyMarkup[1]), source: 'body-markup' };
+  }
+
+  // 3. Fallback: JSON-LD structured data
+  const jsonLdMatch = html.match(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]+?)<\/script>/g);
   if (jsonLdMatch) {
     for (const script of jsonLdMatch) {
       try {
@@ -86,20 +99,13 @@ function extractSubstackContent(html) {
     }
   }
 
-  // 2. Extract the article content div
-  // Substack structure: main > article > .post ... .body
-  const bodyMatch = html.match(/<div[^>]*class="[^"]*body[^"]*"[^>]*>([\s\S]+?)(?:<\/div>\s*){3,}/);
-  if (bodyMatch) {
-    return { content: cleanHtml(bodyMatch[1]), source: 'body-class' };
-  }
-
-  // 3. Try extracting from the article tag
+  // 4. Fallback: article tag
   const articleMatch = html.match(/<article[^>]*>([\s\S]+?)<\/article>/);
   if (articleMatch) {
     return { content: cleanHtml(articleMatch[1]), source: 'article-tag' };
   }
 
-  // 4. Try extracting from main
+  // 5. Fallback: main tag
   const mainMatch = html.match(/<main[^>]*>([\s\S]+?)<\/main>/);
   if (mainMatch) {
     return { content: cleanHtml(mainMatch[1]), source: 'main-tag' };
