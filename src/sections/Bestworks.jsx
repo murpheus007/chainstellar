@@ -33,6 +33,7 @@ const bestWorksCSS = `
 function getTag(link) {
   if (link.includes('medium.com')) return 'Medium';
   if (link.includes('substack.com')) return 'Substack';
+  if (link.includes('x.com') || link.includes('twitter.com')) return 'Twitter';
   return 'Article';
 }
 
@@ -50,7 +51,15 @@ function getLink(work) {
 }
 
 function isExternal(work) {
+  // Only Twitter threads and other non-article links are external
   return work.link.includes('x.com') || work.link.includes('twitter.com');
+}
+
+
+function getLinkText(work) {
+  if (work.link.includes('x.com') || work.link.includes('twitter.com')) return 'View Thread';
+  if (work.link.includes('substack.com') || work.link.includes('medium.com')) return 'Read Article';
+  return 'View Project';
 }
 
 export default function BestWorks() {
@@ -87,7 +96,7 @@ export default function BestWorks() {
                   <h3 className="bw-title">{work.title}</h3>
                   <p className="bw-desc">{work.description}</p>
                   <a href={href} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="bw-link">
-                    View Project <ArrowUpRight size={16} />
+                    {getLinkText(work)} <ArrowUpRight size={16} />
                   </a>
                 </div>
               </article>
