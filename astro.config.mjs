@@ -5,7 +5,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://chainstellar.vercel.app',
+  site: process.env.SITE_URL || 'https://chainstellar.site',
   integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],

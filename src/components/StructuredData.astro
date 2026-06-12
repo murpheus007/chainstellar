@@ -1,22 +1,45 @@
 ---
 const { 
-  name = "Chainstellar",
-  url = "https://chainstellar.vercel.app",
-  description = "Creative Writer & Technical Analyst in the blockchain ecosystem"
+  name = "Damian D. Chidera",
+  alternateName = "Chainstellar",
+  url = "https://chainstellar.site",
+  description = "Damian D. Chidera, known as Chainstellar — Creative Writer & Technical Analyst in the blockchain ecosystem. Solana writer, Web3 content creator, and technical storyteller."
 } = Astro.props;
 
-const schema = {
+const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "name": "Chainstellar",
+  "alternateName": "Damian D. Chidera Portfolio",
+  "url": url,
+  "description": description
+};
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
   "name": name,
+  "alternateName": alternateName,
   "url": url,
   "description": description,
-  "author": {
-    "@type": "Person",
-    "name": "Damian D. Chidera",
-    "alternateName": "Chainstellar"
-  }
+  "jobTitle": "Creative Writer & Technical Analyst",
+  "knowsAbout": [
+    "Blockchain",
+    "Solana",
+    "Web3",
+    "Cryptocurrency",
+    "Technical Writing",
+    "Content Strategy",
+    "Crypto Analysis"
+  ],
+  "sameAs": [
+    "https://x.com/chainstellar",
+    "https://medium.com/@linchpinremainstheboss",
+    "https://substack.com/@chainstellar",
+    "https://t.me/chainstellar1"
+  ]
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />

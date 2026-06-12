@@ -8,8 +8,8 @@ interface Props {
 }
 
 const { 
-	title = "Chainstellar – Portfolio", 
-	description = "Creative Writer & Technical Analyst in the blockchain ecosystem" 
+	title = "Damian D. Chidera (Chainstellar) — Creative Writer & Technical Analyst", 
+	description = "Damian D. Chidera, known as Chainstellar — Creative Writer & Technical Analyst in the blockchain ecosystem. Solana writer, Web3 content creator, and technical storyteller."
 } = Astro.props;
 ---
 
@@ -20,10 +20,99 @@ const {
       <StructuredData />
    </head>
    <body>
+      <div class="global-blob" style="top:20%;left:60%"></div>
       <slot />
    </body>
 </html>
 
 <style is:global>
    @import "../index.css";
+
+   /* Global floating blob */
+   .global-blob {
+     position: fixed;
+     z-index: 0;
+     pointer-events: none;
+     width: 350px;
+     height: 350px;
+     border-radius: 50%;
+     background: radial-gradient(circle, rgba(21, 93, 252, 0.08) 0%, transparent 70%);
+     transition: top 4s ease-in-out, left 4s ease-in-out;
+   }
+   .dark .global-blob {
+     background: radial-gradient(circle, rgba(21, 93, 252, 0.18) 0%, transparent 70%);
+   }
+
+   /* Scroll-triggered card animation */
+   .bw-card {
+     opacity: 0;
+     transform: translateY(24px);
+     transition: opacity 0.6s ease-out, transform 0.6s ease-out, border-color 0.3s, box-shadow 0.3s;
+   }
+   .bw-card.bw-visible {
+     opacity: 1;
+     transform: translateY(0);
+   }
+   /* On desktop, also apply hover-like border when visible */
+   @media (min-width: 768px) {
+     .bw-card.bw-visible:hover {
+       border-color: #155dfc;
+       box-shadow: 0 8px 32px rgba(21, 93, 252, 0.08);
+       transform: translateY(-2px);
+     }
+   }
+   /* On mobile, show the blue border when scrolled into view */
+   @media (max-width: 767px) {
+     .bw-card.bw-visible {
+       border-color: rgba(21, 93, 252, 0.25);
+       box-shadow: 0 4px 16px rgba(21, 93, 252, 0.06);
+     }
+   }
 </style>
+
+<script>
+  // Move global blob randomly
+  function moveBlob() {
+    const blob = document.querySelector('.global-blob');
+    if (!blob) return;
+    const x = Math.random() * (window.innerWidth - 350);
+    const y = Math.random() * (document.body.scrollHeight - 350);
+    blob.style.left = x + 'px';
+    blob.style.top = y + 'px';
+  }
+  setInterval(moveBlob, 5000);
+  setTimeout(moveBlob, 1000);
+
+  // Scroll-triggered card visibility
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('bw-visible');
+        }, i * 100); // stagger
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.bw-card').forEach(card => observer.observe(card));
+  });
+
+  // Expose a function to re-observe cards (called after dynamic content is added)
+  window._reobserveCards = function() {
+    document.querySelectorAll('.bw-card:not(.bw-visible)').forEach(card => observer.observe(card));
+  };
+
+  // Skills fly-in animation
+  const skillsObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('skills-fly-in');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.skills-card').forEach(card => skillsObserver.observe(card));
+  });
+</script>

@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  chainstellar:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - SITE_URL=https://chainstellar.site
+    container_name: chainstellar-app
+    restart: unless-stopped
+    expose:
+      - "4321"
+    networks:
+      - social-downloader_streambolt-net
+
+networks:
+  social-downloader_streambolt-net:
+    external: true

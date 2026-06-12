@@ -1,0 +1,237 @@
+---
+// src/pages/blog/[slug].astro
+// Individual article page — renders full article content
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { data, slug } = post;
+const content = await post.render();
+---
+
+<Layout title={`${data.title} — Chainstellar`} description={data.description}>
+  <main class="pt-20 pb-20">
+    {/* Back nav */}
+    <div class="max-w-4xl mx-auto px-6 py-6">
+      <a href="/blog" class="inline-flex items-center gap-2 text-sm font-mono transition-colors" style="color: var(--color-text-muted);" onmouseover="this.style.color='#155dfc'" onmouseout="this.style.color='var(--color-text-muted)'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        All Articles
+      </a>
+    </div>
+
+    {/* Article Header */}
+    <div class="max-w-4xl mx-auto px-6 pb-10">
+      {/* Cover image */}
+      <div class="rounded-xl overflow-hidden mb-8" style="aspect-ratio: 16/9;">
+        <img
+          src={data.image}
+          alt={data.title}
+          class="w-full h-full object-cover"
+          onerror="this.style.display='none'"
+        />
+      </div>
+
+      {/* Meta */}
+      <div class="flex flex-wrap items-center gap-3 mb-5">
+        <span class="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded" style="color: #155dfc; background: rgba(21,93,252,.06); font-family: 'Space Mono', monospace;">
+          {data.platform}
+        </span>
+        {data.publishedDate && (
+          <span class="text-xs font-mono" style="color: var(--color-text-muted);">
+            {new Date(data.publishedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </span>
+        )}
+      </div>
+
+      {/* Title */}
+      <h1 class="text-3xl md:text-4xl font-black tracking-tight leading-tight mb-4" style="color: var(--color-text);">
+        {data.title}
+      </h1>
+
+      {/* Description */}
+      <p class="text-lg leading-relaxed" style="color: var(--color-text-muted);">
+        {data.description}
+      </p>
+
+      {/* Divider */}
+      <div class="mt-8 mb-10 h-px" style="background: var(--color-border);"></div>
+    </div>
+
+    {/* Article Content */}
+    <div class="max-w-4xl mx-auto px-6">
+      <article class="article-content">
+        {content.body}
+      </article>
+    </div>
+
+    {/* Footer actions */}
+    <div class="max-w-4xl mx-auto px-6 mt-16 pt-8" style="border-top: 1px solid var(--color-border);">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <a href={data.originalUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-mono transition-colors" style="color: #155dfc;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+          Read on {data.platform}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </a>
+        <a href="/blog" class="inline-flex items-center gap-2 text-sm font-mono transition-colors" style="color: var(--color-text-muted);" onmouseover="this.style.color='#155dfc'" onmouseout="this.style.color='var(--color-text-muted)'">
+          ← All Articles
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .article-content {
+    color: var(--color-text);
+    line-height: 1.8;
+    font-size: 17px;
+  }
+
+  .article-content :global(h1),
+  .article-content :global(h2),
+  .article-content :global(h3),
+  .article-content :global(h4) {
+    color: var(--color-text);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-top: 2.5em;
+    margin-bottom: 0.8em;
+    line-height: 1.3;
+  }
+
+  .article-content :global(h1) { font-size: 2em; }
+  .article-content :global(h2) { font-size: 1.6em; }
+  .article-content :global(h3) { font-size: 1.3em; }
+  .article-content :global(h4) { font-size: 1.1em; }
+
+  .article-content :global(p) {
+    margin-bottom: 1.4em;
+    color: var(--color-text);
+  }
+
+  .article-content :global(a) {
+    color: #155dfc;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .article-content :global(a:hover) {
+    color: #0d47c0;
+  }
+
+  .article-content :global(strong),
+  .article-content :global(b) {
+    color: var(--color-text);
+    font-weight: 700;
+  }
+
+  .article-content :global(em),
+  .article-content :global(i) {
+    font-style: italic;
+  }
+
+  .article-content :global(ul),
+  .article-content :global(ol) {
+    margin-bottom: 1.4em;
+    padding-left: 1.5em;
+  }
+
+  .article-content :global(li) {
+    margin-bottom: 0.5em;
+    color: var(--color-text);
+  }
+
+  .article-content :global(blockquote) {
+    border-left: 3px solid #155dfc;
+    padding-left: 1.2em;
+    margin: 1.5em 0;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  .article-content :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1.5em 0;
+  }
+
+  .article-content :global(figure) {
+    margin: 2em 0;
+  }
+
+  .article-content :global(figcaption) {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    text-align: center;
+    margin-top: 0.5em;
+    font-style: italic;
+  }
+
+  .article-content :global(pre) {
+    background: var(--color-surface-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.2em;
+    overflow-x: auto;
+    margin: 1.5em 0;
+    font-size: 14px;
+  }
+
+  .article-content :global(code) {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9em;
+    background: var(--color-surface-muted);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+  }
+
+  .article-content :global(pre code) {
+    background: none;
+    padding: 0;
+  }
+
+  .article-content :global(hr) {
+    border: none;
+    height: 1px;
+    background: var(--color-border);
+    margin: 2.5em 0;
+  }
+
+  /* Substack-specific cleanup */
+  .article-content :global(.header-anchor-post) {
+    position: relative;
+  }
+
+  .article-content :global(.header-anchor-parent) {
+    display: none !important;
+  }
+
+  .article-content :global(.footnote-anchor) {
+    color: #155dfc;
+    font-size: 0.8em;
+    vertical-align: super;
+  }
+
+  /* Medium-specific cleanup */
+  .article-content :global(.graf--subtitle) {
+    font-size: 1.2em;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-bottom: 1.5em;
+  }
+
+  .article-content :global(.section-divider) {
+    border: none;
+    height: 1px;
+    background: var(--color-border);
+    margin: 2em 0;
+  }
+</style>

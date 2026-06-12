@@ -1,5 +1,13 @@
 export const works = [
    {
+      id: 0,
+      title: 'XPEND, WON\'T LEAVE YOU ON READ.',
+      description:
+          'The most productive thing you can do on WhatsApp right now: Payments, Invoicing, and Rewards, powered by Solana',
+      link: 'https://chainstellar.substack.com/p/xpend-wont-leave-you-on-read',
+      image: '/xpend.jpg',
+    },
+   {
       id: 1,
       title: 'WHEN MONEY TALKS, FOR REAL.',
       description:
@@ -143,12 +151,12 @@ export const works = [
       link: 'https://x.com/chainstellar/status/1935798902319681849',
       image: '/usdg.jpg',
    },
-   {
-      id: 19,
-      title: 'A Thread on Token Mill',
-      description:
-         'Token Mill aims to counter scam-heavy platforms like @pumpdotfun with transparent Solana/Avalanche trading.',
-      link: 'https://x.com/chainstellar/status/1858739488698048724',
-      image: '/token-mill.jpg',
-   },
+     {
+       id: 19,
+       title: 'A Thread on Token Mill',
+       description:
+           'Token Mill aims to counter scam-heavy platforms like @pumpdotfun with transparent Solana/Avalanche trading.',
+       link: 'https://x.com/chainstellar/status/1858739488698048724',
+       image: '/token-mill.jpg',
+     },
 ];

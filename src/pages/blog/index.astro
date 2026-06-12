@@ -1,0 +1,190 @@
+---
+// src/pages/blog/index.astro
+// Blog index page — grid of all articles
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+// Sort by publishedDate descending
+posts.sort((a, b) => {
+  const da = a.data.publishedDate || '';
+  const db = b.data.publishedDate || '';
+  return db.localeCompare(da);
+});
+---
+
+<Layout title="Blog — Chainstellar | Articles & Insights" description="Explore articles by Damian D. Chidera (Chainstellar) on blockchain, Solana, Web3, and more. Writing from Substack and Medium, now in one place.">
+  <main class="pt-24 pb-20">
+    {/* Header */}
+    <div class="max-w-6xl mx-auto px-6 mb-16">
+      <div class="text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6"
+          style="background: rgba(21, 93, 252, 0.1); border: 1px solid rgba(21, 93, 252, 0.2);">
+          <span class="text-xs font-bold tracking-widest uppercase" style="color: #155dfc; font-family: 'Space Mono', monospace;">
+            Blog
+          </span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-black tracking-tight mb-4" style="color: var(--color-text);">
+          His Articles &<br /><span style="color: #155dfc;">Insights</span>
+        </h1>
+        <p class="max-w-2xl mx-auto text-lg leading-relaxed" style="color: var(--color-text-muted);">
+          Writing about blockchain, Solana, Web3, and the stories behind the technology.
+          Curated from Substack and Medium.
+        </p>
+      </div>
+    </div>
+
+    {/* Articles Grid */}
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post, i) => (
+          <article class="bw-card" style={`transition-delay: ${i * 80}ms`}>
+            <a href={`/blog/${post.slug}`} class="block h-full">
+              <div class="bw-img-wrap">
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  loading="lazy"
+                  class="bw-img"
+                  onerror="this.src='/images/blog/fallback.jpg'"
+                />
+              </div>
+              <div class="bw-content">
+                <span class="bw-tag">{post.data.platform}</span>
+                <h3 class="bw-title">{post.data.title}</h3>
+                <p class="bw-desc">{post.data.description}</p>
+                <div class="flex items-center justify-between mt-auto pt-3" style="border-top: 1px solid var(--color-border);">
+                  <span class="text-xs font-mono" style="color: var(--color-text-muted);">
+                    {new Date(post.data.publishedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                  </span>
+                  <span class="bw-link" style="font-size: 12px; margin-top: 0;">
+                    Read <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    {/* Back to home */}
+    <div class="max-w-6xl mx-auto px-6 mt-16 text-center">
+      <a href="/" class="inline-flex items-center gap-2 text-sm font-mono hover:underline" style="color: var(--color-text-muted);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Home
+      </a>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .bw-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color .3s, box-shadow .3s, transform .3s, opacity .6s;
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  .bw-card.bw-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .bw-card:hover {
+    border-color: #155dfc;
+    box-shadow: 0 8px 32px rgba(21,93,252,.08);
+    transform: translateY(-2px);
+  }
+  .bw-img-wrap {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+  }
+  .bw-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s cubic-bezier(.22,1,.36,1);
+  }
+  .bw-card:hover .bw-img {
+    transform: scale(1.05);
+  }
+  .bw-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .bw-tag {
+    display: inline-flex;
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+    color: #155dfc;
+    background: rgba(21,93,252,.06);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  .bw-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--color-text);
+    line-height: 1.3;
+    margin: 0;
+    transition: color .2s;
+  }
+  .bw-card:hover .bw-title {
+    color: #155dfc;
+  }
+  .bw-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .bw-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #155dfc;
+    text-decoration: none;
+    transition: opacity .2s;
+    margin-top: auto;
+  }
+  .bw-link:hover {
+    opacity: .8;
+  }
+
+  @media (max-width: 767px) {
+    .bw-card.bw-visible {
+      border-color: rgba(21, 93, 252, 0.25);
+      box-shadow: 0 4px 16px rgba(21, 93, 252, 0.06);
+    }
+  }
+</style>
+
+<script>
+  // Scroll-triggered card animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('bw-visible');
+        }, 80);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.bw-card').forEach(card => observer.observe(card));
+</script>

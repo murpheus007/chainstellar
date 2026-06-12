@@ -34,44 +34,38 @@ function Navbar() {
       };
    }, []);
 
-   // ✅ Sync manual toggle with <html> class + localStorage
-   const toggleTheme = () => {
-      const root = document.documentElement;
-      const isDark = root.classList.toggle('dark');
-      
-      // Sync React state for UI (icons)
-      setDarkMode(isDark);
-      
-      // Persist preference
-      if (isDark) {
-         root.setAttribute('data-theme', 'dark');
-         localStorage.setItem('theme', 'dark');
-      } else {
-         root.setAttribute('data-theme', 'light');
-         localStorage.setItem('theme', 'light');
-      }
-   };
+    // ✅ Sync manual toggle with <html> class + localStorage
+    const toggleTheme = () => {
+       const root = document.documentElement;
+       const isDark = root.classList.toggle('dark');
+       
+       // Sync React state for UI (icons)
+       setDarkMode(isDark);
+       
+       // Persist preference using .dark class as source of truth
+       localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    };
 
    return (
       <>
          {/* Navbar Container */}
          <div className='fixed top-0 left-0 w-full z-[100] md:px-4 md:py-4'>
-            <nav 
-               className={`w-full md:max-w-6xl md:mx-auto flex items-center justify-between px-6 py-3 rounded-none md:rounded-md transition-all duration-500 ${
-                  scrolled 
-                  ? 'bg-surface/80 backdrop-blur-xl shadow-soft border-b md:border border-border/50' 
-                  : 'bg-transparent'
-               }`}
-            >
-               {/* Logo */}
-               <div className='flex items-center gap-2 group cursor-pointer'>
-                  <div className='w-8 h-8 bg-primary rounded-sm flex items-center justify-center rotate-3 group-hover:rotate-12 transition-transform duration-300'>
-                     <span className='text-white font-black text-lg'>C</span>
-                  </div>
-                  <h1 className='text-lg font-black tracking-tight text-text'>
-                     chain<span className='text-primary'>stellar</span>
-                  </h1>
-               </div>
+             <nav 
+                className={`w-full md:max-w-6xl md:mx-auto flex items-center justify-between px-6 py-3 rounded-none md:rounded-md transition-all duration-500 ${
+                   scrolled 
+                   ? 'bg-[var(--color-surface)]/80 backdrop-blur-lg shadow-soft border-b md:border border-[var(--color-border)]/50' 
+                   : 'bg-transparent'
+                }`}
+             >
+                {/* Logo */}
+                <div className='flex items-center gap-2 group cursor-pointer'>
+                   <div className='w-8 h-8 bg-primary rounded-sm flex items-center justify-center transform rotate-3 group-hover:rotate-12 transition-transform duration-300 will-change-transform'>
+                      <span className='text-white font-black text-lg'>C</span>
+                   </div>
+                   <h1 className='text-lg font-black tracking-tight text-text'>
+                      chain<span className='text-primary'>stellar</span>
+                   </h1>
+                </div>
 
                {/* Right Side Tools */}
                <div className='flex items-center gap-4'>
@@ -106,11 +100,11 @@ function Navbar() {
                isOpen ? 'visible opacity-100' : 'invisible opacity-0 pointer-events-none'
             }`}
          >
-            {/* Blurry Backdrop */}
-            <div 
-               className='absolute inset-0 bg-background/60 backdrop-blur-2xl'
-               onClick={() => setIsOpen(false)}
-            />
+                   {/* Blurry Backdrop */}
+                   <div 
+                      className='absolute inset-0 bg-[var(--color-background)]/60 backdrop-blur-2xl'
+                      onClick={() => setIsOpen(false)}
+                   />
 
             {/* Content Drawer */}
             <div
@@ -161,12 +155,21 @@ function Navbar() {
                      desc='Direct messaging for inquiries'
                      onClick={() => setIsOpen(false)}
                   />
+                   <MenuLink 
+                      href='https://drive.google.com/file/d/1aS_cs9KDIP743fLyiBz84AthKEAvo0Jn/view'
+                      icon={<FileText size={20} />}
+                      label='Curriculum Vitae'
+                      desc='My professional journey'
+                      accent={true}
+                      onClick={() => setIsOpen(false)}
+                   />
+
                   <MenuLink 
-                     href='https://drive.google.com/file/d/15qZJQnOudNKuMT8OY0Lg3y1V8Ap-Yr-C'
-                     icon={<FileText size={20} />}
-                     label='Curriculum Vitae'
-                     desc='My professional journey'
-                     accent={true}
+                     href='/blog'
+                     icon={<PenTool size={20} />}
+                     label='Blog'
+                     desc='All articles in one place'
+                     external={false}
                      onClick={() => setIsOpen(false)}
                   />
 
@@ -174,7 +177,7 @@ function Navbar() {
                      <p className='text-[10px] font-bold tracking-[0.2em] text-text-muted uppercase mb-6'>Let's Connect</p>
                      <div className='flex gap-4'>
                         <SocialIcon href='https://x.com/chainstellar' icon={<Twitter size={20} />} />
-                        <SocialIcon href='https://ng.linkedin.com/in/damian-david-chidera-39b18b214' icon={<Linkedin size={20} />} />
+                        <SocialIcon href='https://www.linkedin.com/in/damian-d-chidera-39b18b214' icon={<Linkedin size={20} />} />
                      </div>
                   </div>
                </div>
@@ -185,12 +188,11 @@ function Navbar() {
 }
 
 // Helper Components for Cleaner Drawer
-function MenuLink({ href, icon, label, desc, onClick, accent }) {
+function MenuLink({ href, icon, label, desc, onClick, accent, external = true }) {
    return (
       <a
          href={href}
-         target='_blank'
-         rel='noopener noreferrer'
+         {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
          onClick={onClick}
          className={`group flex items-center justify-between px-4 py-3 rounded-md transition-all duration-300 ${
             accent 

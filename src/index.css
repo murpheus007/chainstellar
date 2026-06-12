@@ -1,90 +1,103 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Outfit', sans-serif;
-  
-  /* Built-in variants configuration: Use the .dark class for dark mode */
-  --variant-dark: (&:where(.dark, .dark *));
-
-  /* Brand Palette */
+  --font-sans: 'Inter', system-ui, sans-serif;
   --color-primary: #155dfc;
   --color-primary-dark: #0d47c0;
   --color-primary-light: #4c8aff;
-  
-  /* Semantic Tokens tied to CSS Variables */
-  --color-background: var(--background);
-  --color-surface: var(--surface);
-  --color-surface-muted: var(--surface-muted);
-  --color-text: var(--text);
-  --color-text-muted: var(--text-muted);
-  --color-border: var(--border);
+  --color-background: #fbfcfe;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f1f5f9;
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-border: #e2e8f0;
+  --color-accent-orange: #f97316;
+  --color-accent-blue: #3b82f6;
+  --color-accent-purple: #a855f7;
+  --color-accent-emerald: #10b981;
+  --color-accent-amber: #f59e0b;
+  --color-accent-rose: #f43f5e;
+  --blur-sm: 4px;
+  --blur-md: 8px;
+  --blur-lg: 16px;
+  --blur-xl: 24px;
 }
 
-/* Explicit Variables Outside Layers for Max Specifity */
-:root {
-  --background: #fbfcfe;
-  --surface: #ffffff;
-  --surface-muted: #f1f5f9;
-  --text: #0f172a;
-  --text-muted: #475569;
-  --border: #e2e8f0;
-}
-
-/* Force dark mode when either .dark class or data-theme="dark" is present */
-:root.dark,
-[data-theme='dark'],
 .dark {
-  --background: #000000 !important;
-  --surface: #0f0f0f !important;
-  --surface-muted: #1a1a1a !important;
-  --text: #f8fafc !important;
-  --text-muted: #94a3b8 !important;
-  --border: #262626 !important;
+  --color-background: #000000;
+  --color-surface: #0f0f0f;
+  --color-surface-muted: #1a1a1a;
+  --color-text: #f8fafc;
+  --color-text-muted: #94a3b8;
+  --color-border: #262626;
+  --color-accent-orange: #fb923c;
+  --color-accent-blue: #60a5fa;
+  --color-accent-purple: #c084fc;
+  --color-accent-emerald: #34d399;
+  --color-accent-amber: #fbbf24;
+  --color-accent-rose: #fda4af;
 }
 
 @layer base {
   html {
-    @apply min-h-screen w-full m-0 p-0 transition-colors duration-500;
-    background-color: var(--background) !important;
-    color: var(--text);
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    scroll-behavior: smooth;
   }
-
   body {
-    @apply min-h-screen w-full overflow-x-hidden m-0 p-0 antialiased transition-colors duration-500 flex flex-col;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-direction: column;
     font-family: var(--font-sans);
-    background-color: var(--background) !important;
-    color: var(--text);
+    background-color: var(--color-background);
+    color: var(--color-text);
   }
-
   main {
-    @apply flex-1 w-full bg-background;
+    flex: 1;
+    width: 100%;
+    background-color: var(--color-background);
   }
-
   h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tighter font-black;
+    letter-spacing: -0.02em;
+    font-weight: 800;
   }
 }
 
-/* Custom Utilities for "Wow Factor" */
+/* Recognition year tags — hardcoded for cross-browser consistency */
+.recognition-year {
+  color: #155dfc !important;
+}
+.dark .recognition-year {
+  color: #ffffff !important;
+}
+
 @layer utilities {
   .glass {
-    @apply bg-surface/70 backdrop-blur-xl border border-border/50;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-border);
   }
-  
-  .glass-dark {
-    @apply bg-black/40 backdrop-blur-xl border border-white/5;
+  .dark .glass {
+    background: rgba(15,15,15,0.7);
+    border: 1px solid var(--color-border);
   }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-br from-primary to-primary-dark;
-  }
-
   .shadow-soft {
-    box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.1);
+    box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.08);
   }
-  
   .dark .shadow-soft {
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.4);
   }
 }

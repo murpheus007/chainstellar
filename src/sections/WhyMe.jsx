@@ -4,8 +4,8 @@ import { Mail, ArrowRight, MessageSquareCode } from 'lucide-react';
 function WhyMe() {
    return (
       <section className='py-12 md:py-24 bg-surface-muted relative overflow-hidden'>
-         {/* Background Shapes */}
-         <div className='absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-primary/20 rounded-full blur-[100px]'></div>
+          {/* Background Shapes */}
+          <div className='absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-[var(--color-primary)]/20 rounded-full blur-[var(--blur-md)]'></div>
          
          <div className='max-w-6xl mx-auto px-4 md:px-6 relative z-10'>
             <div className='bg-primary rounded-md p-4 md:p-16 flex flex-col lg:flex-row items-center gap-12 overflow-hidden shadow-2xl shadow-primary/20 relative group'>
@@ -36,8 +36,8 @@ function WhyMe() {
                   </a>
                </div>
 
-               {/* Right: Visual */}
-               <div className='flex-1 relative z-10 w-full md:w-auto overflow-hidden rounded-md border border-white/20 shadow-2xl rotate-2 group-hover:rotate-0 transition-all duration-700'>
+                {/* Right: Visual */}
+                <div className='flex-1 relative z-10 w-full md:w-auto overflow-hidden rounded-md border border-[var(--color-border)]/20 shadow-2xl transform rotate-2 group-hover:rotate-0 transition-all duration-700 will-change-transform'>
                   <img
                      src='/whyme.jpg'
                      alt="Let's work together"
