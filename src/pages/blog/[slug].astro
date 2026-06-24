@@ -28,7 +28,13 @@ try {
 }
 ---
 
-<Layout title={`${data.title} — Chainstellar`} description={data.description}>
+<Layout 
+  title={`${data.title} — Chainstellar`} 
+  description={data.description}
+  ogType="article"
+  ogImage={data.image}
+  publishedTime={data.publishedTime ? new Date(data.publishedTime).toISOString() : undefined}
+>
   <main class="pt-20 pb-20" style="background: var(--color-background); color: var(--color-text);">
     {/* Top nav bar with back link + theme toggle */}
     <div class="max-w-4xl mx-auto px-6 py-4">

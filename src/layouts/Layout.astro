@@ -5,18 +5,24 @@ import StructuredData from "../components/StructuredData.astro";
 interface Props {
 	title?: string;
 	description?: string;
+	ogType?: string;
+	ogImage?: string;
+	publishedTime?: string;
 }
 
 const { 
 	title = "Damian D. Chidera (Chainstellar) — Creative Writer & Technical Analyst", 
-	description = "Damian D. Chidera, known as Chainstellar — Creative Writer & Technical Analyst in the blockchain ecosystem. Solana writer, Web3 content creator, and technical storyteller."
+	description = "Damian D. Chidera, known as Chainstellar — Creative Writer & Technical Analyst in the blockchain ecosystem. Solana writer, Web3 content creator, and technical storyteller.",
+	ogType = "website",
+	ogImage,
+	publishedTime,
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <BaseHead title={title} description={description} />
+      <BaseHead title={title} description={description} ogType={ogType} ogImage={ogImage} publishedTime={publishedTime} />
       <StructuredData />
    </head>
    <body>

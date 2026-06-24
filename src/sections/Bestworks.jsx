@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { works } from '../static/works';
+
+const WORKS_PER_PAGE = 6;
 
 const bestWorksCSS = `
 .bw-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:8px;overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s,opacity .6s}
@@ -20,12 +22,13 @@ const bestWorksCSS = `
 .bw-grid{display:grid;grid-template-columns:1fr;gap:16px}
 @media(min-width:768px){.bw-grid{grid-template-columns:1fr 1fr}}
 @media(min-width:1024px){.bw-grid{grid-template-columns:1fr 1fr 1fr}}
-.bw-more{display:flex;justify-content:center;margin-top:40px}
-.bw-more-btn{padding:12px 32px;border-radius:6px;border:2px solid #155dfc;background:#fff;color:#155dfc;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
-.bw-more-btn:hover{background:#f0f4ff;border-color:#0d47c0;color:#0d47c0}
-.dark .bw-more-btn{background:#fff;border-color:#155dfc;color:#155dfc}
-.dark .bw-more-btn:hover{background:#f0f4ff;border-color:#0d47c0;color:#0d47c0}
-.bw-more-btn:hover{border-color:#155dfc;color:#155dfc;box-shadow:0 4px 16px rgba(21,93,252,.08)}
+.bw-pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:48px;flex-wrap:wrap}
+.bw-page-btn{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;padding:0 12px;border-radius:6px;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.bw-page-btn:hover:not(:disabled){border-color:#155dfc;color:#155dfc;background:rgba(21,93,252,.04)}
+.bw-page-btn.active{background:#155dfc;border-color:#155dfc;color:#fff}
+.bw-page-btn.active:hover{background:#155dfc;border-color:#155dfc;color:#fff}
+.bw-page-btn:disabled{opacity:.4;cursor:not-allowed}
+.bw-page-dots{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:40px;color:var(--color-text-muted);font-size:14px}
 .dark .bw-card{border-color:rgba(255,255,255,.1)}
 .dark .bw-card:hover{border-color:rgba(21,93,252,.5);box-shadow:0 8px 40px rgba(21,93,252,.15)}
 `;
@@ -63,8 +66,33 @@ function getLinkText(work) {
 }
 
 export default function BestWorks() {
-  const [showAll, setShowAll] = useState(false);
-  const visibleWorks = showAll ? works : works.slice(0, 6);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(works.length / WORKS_PER_PAGE);
+  const startIdx = (currentPage - 1) * WORKS_PER_PAGE;
+  const visibleWorks = works.slice(startIdx, startIdx + WORKS_PER_PAGE);
+
+  function goToPage(page) {
+    if (page < 1 || page > totalPages) return;
+    setCurrentPage(page);
+    setTimeout(() => window._reobserveCards && window._reobserveCards(), 50);
+  }
+
+  // Build page numbers with ellipsis
+  function getPageNumbers() {
+    const pages = [];
+    if (totalPages <= 5) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      pages.push(1);
+      if (currentPage > 3) pages.push('...');
+      const start = Math.max(2, currentPage - 1);
+      const end = Math.min(totalPages - 1, currentPage + 1);
+      for (let i = start; i <= end; i++) pages.push(i);
+      if (currentPage < totalPages - 2) pages.push('...');
+      pages.push(totalPages);
+    }
+    return pages;
+  }
 
   return (
     <>
@@ -104,11 +132,37 @@ export default function BestWorks() {
             })}
           </div>
 
-          {/* See More */}
-          {!showAll && works.length > 6 && (
-            <div className="bw-more">
-              <button className="bw-more-btn" onClick={() => { setShowAll(true); setTimeout(() => window._reobserveCards && window._reobserveCards(), 50); }}>
-                See More Works
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="bw-pagination">
+              <button
+                className="bw-page-btn"
+                onClick={() => goToPage(currentPage - 1)}
+                disabled={currentPage === 1}
+                aria-label="Previous page"
+              >
+                <ChevronLeft size={18} />
+              </button>
+              {getPageNumbers().map((page, idx) =>
+                page === '...' ? (
+                  <span key={`dots-${idx}`} className="bw-page-dots">…</span>
+                ) : (
+                  <button
+                    key={page}
+                    className={`bw-page-btn ${currentPage === page ? 'active' : ''}`}
+                    onClick={() => goToPage(page)}
+                  >
+                    {page}
+                  </button>
+                )
+              )}
+              <button
+                className="bw-page-btn"
+                onClick={() => goToPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                aria-label="Next page"
+              >
+                <ChevronRight size={18} />
               </button>
             </div>
           )}

@@ -2,11 +2,21 @@
 interface Props {
 	title?: string;
 	description?: string;
+	ogType?: string;
+	ogImage?: string;
+	publishedTime?: string;
+	twitterSite?: string;
+	twitterCreator?: string;
 }
 
 const { 
 	title = "Damian D. Chidera (Chainstellar) — Creative Writer & Technical Analyst", 
-	description = "Damian D. Chidera, known as Chainstellar — Creative Writer & Technical Analyst in the blockchain ecosystem. Solana writer, Web3 content creator, and technical storyteller."
+	description = "Damian D. Chidera, known as Chainstellar — Creative Writer & Technical Analyst in the blockchain ecosystem. Solana writer, Web3 content creator, and technical storyteller.",
+	ogType = "website",
+	ogImage,
+	publishedTime,
+	twitterSite = "@chainstellar",
+	twitterCreator = "@chainstellar"
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -64,6 +74,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <meta
    name="author"
    content="Damian D. Chidera" />
+<meta name="robots" content="index, follow" />
 
 <meta
    property="og:title"
@@ -73,13 +84,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
    content={description} />
 <meta
    property="og:image"
-   content={new URL('/preview.png?v=1', Astro.site)} />
+   content={ogImage ? new URL(ogImage, Astro.site) : new URL('/preview.png?v=1', Astro.site)} />
 <meta
    property="og:url"
    content={canonicalURL} />
 <meta
    property="og:type"
-   content="website" />
+   content={ogType} />
+{publishedTime && `${publishedTime}` && (
+   <meta property="article:published_time" content={publishedTime} />
+)}
+<meta property="article:author" content="Damian D. Chidera" />
 
 <meta
    name="twitter:card"
@@ -92,7 +107,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
    content={description} />
 <meta
    name="twitter:image"
-   content={new URL('/preview.png?v=1', Astro.site)} />
+   content={ogImage ? new URL(ogImage, Astro.site) : new URL('/preview.png?v=1', Astro.site)} />
+<meta name="twitter:site" content={twitterSite} />
+<meta name="twitter:creator" content={twitterCreator} />
 <meta
    name="google-site-verification"
    content="15te9dAY2cefQGu2AeZ6eastxj0VwMNmGoQop2gIUHI" />
